@@ -105,14 +105,14 @@ create table termNames_combo (
 );
 ```
 
-#### Table 7: values
+#### Table 7: taldau_values
 | value_id | termName_term_id | name | date | value_string | value_long | date_created |
 |----------|------------------|------|------|--------------|------------|--------------|
 |     1    |         2        |"2004 год" | "31.12.2004" | "115.5" | 115.5 | 21.02.2021 |
 
 SQL code:
 ```SQL
-create table values (
+create table taldau_values (
     value_id int primary key,
     termName_term_id int,
     name text,
@@ -123,7 +123,22 @@ create table values (
 );
 ```
 
+Steps that need to be done once only:
+1. Create tables in .db using `create_sql_tables.py` file;
 
 
+Algorithm:
+1. Load JSON into json object with `munge.py`;
+2. Save json object in the .json file with `munge.py` file;
+3. Create connection to existing tables with `munge.py` file;
+4. Process json object and store relevant parts into existing tables;
+5. Close the connection to .db.
+
+
+### Order of running python files:
+1. Run `load_json.py` to save json from Taldau;
+2. Run `create_sql_tables.py` to create schema for the SQL tables;
+3. Run `fill_in_non_json_tables.py` to fill in all tables except taldau_values table;
+4. Run `fill_in_json_tables.py` to fill in taldau_values table with the values from Taldau.
 
 
