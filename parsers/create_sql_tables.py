@@ -1,6 +1,6 @@
 import sqlite3
 
-current_dir = "/Users/alemshaimardanov/Desktop/nat_bank/macro_data_portal_code/parsers"
+current_dir = "/pwdUsers/alemshaimardanov/Desktop/nat_bank/macro_data_portal_code/parsers"
 db_file = current_dir + '/taldau_indicator1.db'
 
 # Create SQL connection to the database

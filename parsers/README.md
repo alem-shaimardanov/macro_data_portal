@@ -142,3 +142,11 @@ Algorithm:
 4. Run `fill_in_json_tables.py` to fill in taldau_values table with the values from Taldau.
 
 
+### To-dos
+
+- [ ] set up primary key to be incremental;
+- [ ] write try, except blocks for fill_in_json.py
+- [ ] use insert into table (columns) values (vals)
+- [ ] use regular expression to check if string is double or not
+- [ ] use SQL queries to access ids of source_names
+- [ ] remove current_dir

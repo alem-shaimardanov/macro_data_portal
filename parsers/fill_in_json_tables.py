@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 import json
 import sqlite3
 from datetime import date
@@ -6,7 +7,7 @@ from datetime import date
 indicator_name = "индекс реальных денежных доходов"
 
 # Create a dict to match source names to their source ids
-source_names = {"Taldau": 1, "MinFin": 2, "FRED": 3}
+source_names = {"Taldau": 1, "MinFin": 2, "FRED": 3} # use SQL query !!!
 current_source_name = "Taldau"
 current_term_name = "Регионы"
 value_id = '1'
@@ -16,7 +17,7 @@ termName_term_id = '1'
 date_today = date.today()
 
 # This function is used to update primary key of taldau_values table
-def increment_id(value_id_str):
+def increment_id(value_id_str): # NO NEED for the func, use automatic ids insertion !!!
     value_id_int = int(value_id_str)
     value_id_int += 1
     value_id_str = str(value_id_int)
@@ -50,16 +51,16 @@ for item in json_object:
             elem_date = elem["date"]
             elem_value_string = elem["value"]
             elem_value_long = 0.0
-            if elem_value_string == "":
-                elem_value_string = "None"
-                elem_value_long = "None"
+            if elem_value_string == "": # use regular expressions
+                elem_value_string = NULL
+                elem_value_long = NULL
             else:
                 elem_value_long = float(elem_value_string)
                 
             print("Name: ", elem_name, ", Date: ", elem_date, ", Value: ", elem_value_string)
 
             # Insert 'value_id', 'termName_term_id', 'name', 'date', 'value_string', 'value_long', 'date_created'
-            cur.execute("INSERT INTO taldau_values VALUES(" + value_id + ",'" + termName_term_id + "','" + elem_name + \
+            cur.execute("INSERT INTO() taldau_values VALUES(" + value_id + ",'" + termName_term_id + "','" + elem_name + \
             "','" + elem_date +  "','" + elem_value_string + "','" + str(elem_value_long) + "','" + str(date_today) + "')")
             
             # Increment value_id
@@ -70,6 +71,12 @@ for item in json_object:
 
 # # Save (commit) the changes
 con.commit()
+
+# try:
+# 
+#   con.commit()
+# except:
+#   con.rollback()
 
 # Close the cursor
 con.close()
