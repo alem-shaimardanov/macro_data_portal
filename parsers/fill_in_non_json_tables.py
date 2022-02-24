@@ -41,35 +41,35 @@ print(table_names_list)
 
 # Fill in the 'indicators_main' table
 # Insert indicator_name, indicator_id, into indicators_main table
-cur.execute("INSERT INTO indicators_main VALUES ('1','" + indicator_name + "','" + str(source_names["Taldau"]) + "')")
+cur.execute("INSERT INTO indicators_main (indicator_name, source_id) VALUES ('" + indicator_name + "','" + str(source_names["Taldau"]) + "')")
 
 
 # Fill in the 'source_names' table:
 # Insert source_id, source_name into 'source_names' table
-cur.execute("INSERT INTO source_names VALUES ('1','" + current_source_name + "')")
+cur.execute("INSERT INTO source_names (source_name) VALUES ('" + current_source_name + "')")
 
 
 # Fill in the 'periods' table:
 # Insert period_id, period_name into 'periods' table
-cur.execute("INSERT INTO periods VALUES ('1','Год')")
-cur.execute("INSERT INTO periods VALUES ('2','Квартал')")
-cur.execute("INSERT INTO periods VALUES ('3','Месяц')")
-cur.execute("INSERT INTO periods VALUES ('4','Месяц с накоплением')")
+cur.execute("INSERT INTO periods (period_name) VALUES ('Год')")
+cur.execute("INSERT INTO periods (period_name) VALUES ('Квартал')")
+cur.execute("INSERT INTO periods (period_name) VALUES ('Месяц')")
+cur.execute("INSERT INTO periods (period_name) VALUES ('Месяц с накоплением')")
 
 
 # Fill in the 'indicator_period_combo' table:
 # Insert 'indic_period_id', 'indicator_id', 'period_id'
-cur.execute("INSERT INTO indicator_period_combo VALUES ('1','1','1')")
+cur.execute("INSERT INTO indicator_period_combo (indicator_id, period_id) VALUES ('1','1')")
 
 
 # Fill in the 'termNames' table:
 # Insert 'termName_id', 'termName'
-cur.execute("INSERT INTO termNames VALUES ('1','" + current_term_name + "')")
+cur.execute("INSERT INTO termNames (termName) VALUES ('" + current_term_name + "')")
 
 
 # Fill in the 'termNames_combo' table:
 # Insert 'termName_combo_id', 'termName_term_id', 'termName_id', 'indic_period_id'
-cur.execute("INSERT INTO termNames_combo VALUES ('1', '1', '1', '1')")
+cur.execute("INSERT INTO termNames_combo (termName_term_id, termName_id, indic_period_id) VALUES ('1', '1', '1')")
 
 
 # # Save (commit) the changes
