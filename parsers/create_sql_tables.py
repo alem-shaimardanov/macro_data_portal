@@ -60,8 +60,8 @@ cur.execute('''create table taldau_values (
     termName_term_id int not null,
     name text not null,
     date text not null,
-    value_string text,
-    value_long real,
+    value_string text default null,
+    value_long real default null,
     date_created smalldatetime
 )''')
 

@@ -145,8 +145,11 @@ Algorithm:
 ### To-dos
 
 - [x] set up primary key to be incremental;
-- [ ] write try, except blocks for fill_in_json.py
+- [x] write try, except blocks for fill_in_json.py
 - [x] use insert into table (columns) values (vals)
-- [ ] use regular expression to check if string is double or not
-- [ ] use SQL queries to access ids of source_names
+- [x] use regular expression to check if string is double or not
+- [x] use SQL queries to access ids of source_names
 - [x] remove current_dir
+- [x] set by default null when creating tables
+
+
