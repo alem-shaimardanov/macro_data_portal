@@ -211,3 +211,18 @@ Algorithm:
 region | VKO
 region | ZKO
 region | SKO
+
+
+
+[ ] create a post which will mean created post_id
+[ ] add comment referring to post_id
+[ ] reply comment, mention post_id, comment_id
+[ ] show all comments in a tree format for post_id
+
+4 methods:
+1. Create a post
+2. Add comment
+3. Reply to comment
+4. Get comments with a post
+
+Read: https://habr.com/ru/post/263629/ 
