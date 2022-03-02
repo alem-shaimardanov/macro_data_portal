@@ -10,7 +10,8 @@ con = sqlite3.connect(db_file)
 cur = con.cursor()
 
 # Create 'indicators_main' table
-cur.execute('''create table indicators_main (
+cur.execute('''
+    create table indicators_main (
     indicator_id integer primary key autoincrement,
     indicator_name text,
     source_id int)''')
@@ -38,18 +39,43 @@ cur.execute('''create table indicator_period_combo (
 )''')
 
 
-# Create 'termNames' table
-cur.execute('''create table termNames (
-    termName_id integer primary key autoincrement,
-    termName text
+# Create 'term_item_names' table
+cur.execute('''create table term_item_names (
+    term_item_name_id integer primary key autoincrement,
+    term_item_name text
 )''')
 
 
-# Create 'termNames_combo' table
-cur.execute('''create table termNames_combo (
-    termName_combo_id integer primary key autoincrement,
-    termName_term_id int,
-    termName_id int,
+# Create 'term_category_groups' table
+cur.execute('''create table term_category_groups (
+    id integer primary key autoincrement,
+    term_category_group_id int,
+    term_category_id int
+)''')
+
+
+# Create 'term_category_names' table
+cur.execute('''create table term_category_names (
+    term_category_id integer primary key autoincrement,
+    term_category_name text
+)''')
+
+
+
+# Create 'term_item_groups' table
+cur.execute('''create table term_item_groups(
+    id integer primary key autoincrement,
+    term_category_group_id int,
+    term_item_group_id int, 
+    term_item_id int
+)''')
+
+
+
+# Create 'term_item_group_indic_periods' table
+cur.execute('''create table term_item_group_indic_periods (
+    id integer primary key autoincrement,
+    term_item_group_id int,
     indic_period_id int
 )''')
 
@@ -57,16 +83,16 @@ cur.execute('''create table termNames_combo (
 # Create 'taldau_values' table
 cur.execute('''create table taldau_values (
     value_id integer primary key autoincrement,
-    termName_term_id int not null,
-    name text not null,
-    date text not null,
-    value_string text default null,
-    value_long real default null,
+    term_item_group_id int,
+    name text,
+    date text,
+    value_string text,
+    value_long real,
     date_created smalldatetime
 )''')
 
-# cur.execute('''CREATE TABLE stocks
-#                (date text, trans text, symbol text, qty real, price real)''')
+
+
 
 # Save (commit) the changes
 con.commit()

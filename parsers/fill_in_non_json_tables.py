@@ -8,15 +8,18 @@ print("Start of tables being filled running ...")
 # Parser for a single indicator from Taldau
 indicator_name = "индекс реальных денежных доходов"
 
-# Create a dict to match source names to their source ids
-source_names = {"Taldau": 1, "MinFin": 2, "FRED": 3}
 current_source_name = "Taldau"
-current_term_name = "Регионы"
-
+current_source_name_id = "1"
+current_term_category_name = "Регионы"
+current_term_category_group_id = "1"
+current_term_category_id = "1"
+term_item_group_ids_list = [0]
+current_indicator_id = "1"
+current_period_id = "1"
 
 ############# CODE TO WRITE INTO SQLITE TABLES #################
-current_dir = "/Users/alemshaimardanov/Desktop/nat_bank/macro_data_portal_code/parsers"
-db_file = current_dir + '/taldau_indicator1.db'
+# current_dir = "/Users/alemshaimardanov/Desktop/nat_bank/macro_data_portal_code/parsers"
+db_file = 'taldau_indicator1.db'
 
 # Create SQL connection to the database
 con = sqlite3.connect(db_file)
@@ -37,11 +40,17 @@ print(table_names_list)
 # # Test printing table_names
 # for t_n in table_names_list:
 #     print(type(t_n[0]), t_n[0])
-
+''' .tables
+indicator_period_combo         term_category_groups         
+indicators_main                term_category_names          
+periods                        term_item_group_indic_periods
+source_names                   term_item_groups             
+taldau_values                  term_item_names 
+'''
 
 # Fill in the 'indicators_main' table
-# Insert indicator_name, indicator_id, into indicators_main table
-cur.execute("INSERT INTO indicators_main (indicator_name, source_id) VALUES ('" + indicator_name + "','" + str(source_names["Taldau"]) + "')")
+# Insert indicator_name, source_id, into indicators_main table
+cur.execute("INSERT INTO indicators_main (indicator_name, source_id) VALUES ('" + indicator_name + "','" + current_source_name_id + "')")
 
 
 # Fill in the 'source_names' table:
@@ -59,17 +68,20 @@ cur.execute("INSERT INTO periods (period_name) VALUES ('Месяц с накоп
 
 # Fill in the 'indicator_period_combo' table:
 # Insert 'indic_period_id', 'indicator_id', 'period_id'
-cur.execute("INSERT INTO indicator_period_combo (indicator_id, period_id) VALUES ('1','1')")
+cur.execute("INSERT INTO indicator_period_combo (indicator_id, period_id) VALUES ('" + current_indicator_id +
+"','" + current_period_id + "')")
 
 
-# Fill in the 'termNames' table:
-# Insert 'termName_id', 'termName'
-cur.execute("INSERT INTO termNames (termName) VALUES ('" + current_term_name + "')")
+# Fill in the 'term_category_names' table:
+# Insert 'term_category_name'
+cur.execute("INSERT INTO term_category_names (term_category_name) VALUES ('" + current_term_category_name + "')")
 
 
-# Fill in the 'termNames_combo' table:
-# Insert 'termName_combo_id', 'termName_term_id', 'termName_id', 'indic_period_id'
-cur.execute("INSERT INTO termNames_combo (termName_term_id, termName_id, indic_period_id) VALUES ('1', '1', '1')")
+# Fill in the 'term_category_groups' table:
+# Insert 'term_category_group_id', 'term_category_id'
+cur.execute("INSERT INTO term_category_groups (term_category_group_id, term_category_id) VALUES ('" +
+current_term_category_group_id + "','" + current_term_category_id + "')")
+
 
 
 # # Save (commit) the changes

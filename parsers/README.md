@@ -25,7 +25,7 @@ Tables to store json file:
 SQL code:
 ```SQL
 create table indicators_main (
-    indicator_id int primary key,
+    indicator_id integer primary key autoincrement,
     indicator_name text,
     source_id int
 );
@@ -39,7 +39,7 @@ create table indicators_main (
 SQL code:
 ```SQL
 create table source_names (
-    source_id int primary key,
+    source_id integer primary key autoincrement,
     source_name text
 );
 ```
@@ -53,7 +53,7 @@ create table source_names (
 SQL code:
 ```SQL
 create table periods (
-    period_id int primary key,
+    period_id integer primary key autoincrement,
     period_name text
 );
 ```
@@ -67,54 +67,107 @@ create table periods (
 SQL code:
 ```SQL
 create table indicator_period_combo (
-    indic_period_id int primary key,
+    indic_period_id integer primary key autoincrement,
     indicator_id int,
     period_id int
 );
 ```
 
-#### Table 5: termNames
-| termName_id | termName |
-|-------------|----------|
-|      1      | "КЫЗЫЛОРДИНСКАЯ ОБЛАСТЬ" |
-|      2      | "ЮЖНО-КАЗАХСТАНСКАЯ ОБЛАСТЬ" |
-|      3      | "Скот крупный рогатый" |
+#### Table 5: term_item_names
+| term_item_name_id | term_item_name |
+|-------------------|----------------|
+|         1         | "КЫЗЫЛОРДИНСКАЯ ОБЛАСТЬ" |
+|         2         | "ЮЖНО-КАЗАХСТАНСКАЯ ОБЛАСТЬ" |
 
-SQL code:
 ```SQL
-create table termNames (
-    termName_id int primary key,
-    termName text
+create table term_item_names (
+    term_item_name_id integer primary key autoincrement,
+    term_item_name text
 );
 ```
 
-#### Table 6: termNames_combo
-| termName_combo_id | termName_term_id | termName_id | indic_period_id |
-|-------------------|------------------|-------------|-----------------|
-|         1         |         1        |      1      |         2       |
-|         2         |         2        |      2      |         1       |
-|         3         |         2        |      3      |         1       |
+
+#### Table 6: term_category_groups
+// It stores 
+| id | term_category_group_id | term_category_id |
+|----|------------------------|------------------|
+| 1  |           1            |         1        |
+| 2  |           1            |         2        |
+
 
 SQL code:
 ```SQL
-create table termNames_combo (
-    termName_combo_id int primary key,
-    termName_term_id int,
-    termName_id int,
+create table term_category_groups (
+    id integer primary key autoincrement,
+    term_category_group_id int,
+    term_category_id int
+);
+```
+
+
+#### Table 7: term_category_names
+| term_category_id | term_category_name |
+|------------------|--------------------|
+|         1        |      "Регионы"     |
+|         2        | "Виды сельскохозяйственной продукции" |
+
+```SQL
+create table term_category_names (
+    term_category_id integer primary key autoincrement,
+    term_category_name text
+)
+
+```
+
+
+#### Table 8: term_item_groups
+| id | term_category_group_id | term_item_group_id | term_item_name_id |
+|----|------------------------|--------------------|-------------------|
+|  1 |           1            |             1      |             1     |
+|  2 |           1            |             1      |             2     |
+|  3 |           1            |             2      |             1     |
+|  4 |           1            |             2      |             3     |
+|  5 |           1            |             3      |             4     |
+|  6 |           1            |             3      |             2     |
+
+SQL code:
+``` SQL
+create table term_item_groups(
+    id integer primary key autoincrement,
+    term_category_group_id int,
+    term_item_group_id int, 
+    term_item_id int
+);
+```
+
+
+
+#### Table 9: term_item_group_indic_periods
+| id | term_item_group_id | indic_period_id |
+|----|--------------------|-----------------|
+|  1 |         1          |         1       |
+
+
+
+SQL code:
+```SQL
+create table term_item_groups (
+    id integer primary key autoincrement,
+    term_item_group_id int,
     indic_period_id int
 );
 ```
 
-#### Table 7: taldau_values
-| value_id | termName_term_id | name | date | value_string | value_long | date_created |
-|----------|------------------|------|------|--------------|------------|--------------|
-|     1    |         2        |"2004 год" | "31.12.2004" | "115.5" | 115.5 | 21.02.2021 |
+#### Table 10: taldau_values
+| value_id | term_item_group_id | name | date | value_string | value_long | date_created |
+|----------|--------------------|------|------|--------------|------------|--------------|
+|     1    |          2         | "2004 год" | "31.12.2004" | "115.5" | 115.5 | 21.02.2021 |
 
 SQL code:
 ```SQL
 create table taldau_values (
-    value_id int primary key,
-    termName_term_id int,
+    value_id integer primary key autoincrement,
+    term_item_group_id int,
     name text,
     date text,
     value_string text,
@@ -122,6 +175,7 @@ create table taldau_values (
     date_created smalldatetime
 );
 ```
+
 
 Steps that need to be done once only:
 1. Create tables in .db using `create_sql_tables.py` file;
@@ -151,5 +205,9 @@ Algorithm:
 - [x] use SQL queries to access ids of source_names
 - [x] remove current_dir
 - [x] set by default null when creating tables
+- [ ] add oblast's to tables and be able to use them to choose specific name,date,value records
 
-
+- Create table to store termname_category_id, termname_ids
+region | VKO
+region | ZKO
+region | SKO
