@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/Users/alemshaimardanov/opt/anaconda3/bin/python"
+    "python.pythonPath": "/Users/alemshaimardanov/opt/anaconda3/bin/python",
+    "javascript.preferences.quoteStyle": "double"
 }

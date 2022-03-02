@@ -34,11 +34,6 @@ excel_data_df = pandas.read_excel('Отчет НФ на 1.02.2022г.xlsx', sheet
 ######################### SOLUTION 2 #############################
 excel_data_df = pandas.read_excel('Отчет НФ на 1.02.2022г.xlsx', sheet_name='01.02.2022')
 
-
-
-
-
-###
 v_tom_chisle = 'в том числе:'
 column1 = 'ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН НА 1 ФЕВРАЛЯ 2022 ГОДА '
 column2 = 'Unnamed: 1'
@@ -65,6 +60,17 @@ def isDashString(string):
     return has_dash
 
 
+# This is the function to check if value is float or not
+def isfloat(num):
+    try:
+        float(num)
+        return True
+    except ValueError:
+        return False
+
+
+
+
 # Loop through the rows of dataframe
 for ind in excel_data_df.index:
     current_col1_val = excel_data_df[column1][ind]
@@ -75,7 +81,7 @@ for ind in excel_data_df.index:
     # Check if this is the main key
     if isinstance(current_col1_val, str) and len(current_col1_val) < 3 and v_tom_chisle_gen1 == False:
         # Add main key to the excel_json
-        excel_json_gen0[current_col2_val] = str(current_col3_val)
+        excel_json_gen0[current_col2_val] = "nan" if isfloat(current_col3_val) else current_col3_val
     
     
     # Check if cur value is v_tom_chisle of gen1
@@ -112,7 +118,7 @@ for ind in excel_data_df.index:
     
     # Check if cur value belongs to dict_gen2
     elif v_tom_chisle_gen1 and v_tom_chisle_gen2:
-        excel_json_gen0[prev_v_tom_chisle_key_gen1][prev_v_tom_chisle_key_gen2][current_col2_val] = current_col3_val
+        excel_json_gen0[prev_v_tom_chisle_key_gen1][prev_v_tom_chisle_key_gen2][current_col2_val] = "nan" if isfloat(current_col3_val) else current_col3_val
         
     
     # Check if cur value is a dash_str and you just finished filling the dict_gen_2 
@@ -120,22 +126,23 @@ for ind in excel_data_df.index:
         v_tom_chisle_gen2 = False # This means you're done with filling the dict_gen2. Work with dict_gen1
         
         # Add dash_str to dict_gen1
-        excel_json_gen0[prev_v_tom_chisle_key_gen1][current_col2_val] = str(current_col3_val)
+        excel_json_gen0[prev_v_tom_chisle_key_gen1][current_col2_val] = "nan" if isfloat(current_col3_val) else current_col3_val
     
     # Check if cur value is a dash_str and you've previously added other dash_str
     elif isinstance(current_col2_val, str) and isDashString(current_col2_val) and v_tom_chisle_gen2 == False and v_tom_chisle_gen1:
          # Add dash_str to dict_gen1
-        excel_json_gen0[prev_v_tom_chisle_key_gen1][current_col2_val] = str(current_col3_val)
+        excel_json_gen0[prev_v_tom_chisle_key_gen1][current_col2_val] = "nan" if isfloat(current_col3_val) else current_col3_val
     
     # Check if cur value is a main key
     elif isinstance(current_col1_val, str) and len(current_col1_val) < 3:
         v_tom_chisle_gen1 = False
         
         # Add main key to dict_gen0
-        excel_json_gen0[current_col2_val]= current_col3_val
+        excel_json_gen0[current_col2_val]= "nan" if isfloat(current_col3_val) else current_col3_val
         
     # Update prev_key
     prev_key = current_col2_val
+
 
 print("Final JSON:")
 print(excel_json_gen0)
