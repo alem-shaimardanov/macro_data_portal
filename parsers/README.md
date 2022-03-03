@@ -214,10 +214,10 @@ region | SKO
 
 
 
-[ ] create a post which will mean created post_id
-[ ] add comment referring to post_id
-[ ] reply comment, mention post_id, comment_id
-[ ] show all comments in a tree format for post_id
+- [ ] create a post which will mean created post_id
+- [ ] add comment referring to post_id
+- [ ] reply comment, mention post_id, comment_id
+- [ ] show all comments in a tree format for post_id
 
 4 methods:
 1. Create a post
@@ -226,3 +226,55 @@ region | SKO
 4. Get comments with a post
 
 Read: https://habr.com/ru/post/263629/ 
+
+
+### Closure Table combined with Adjancy List
+
+#### Table 1: comments_data
+
+| idEntry | content | dateCreated | dateUpdated
+|---------|---------| "12/28/2021"| "01/01/2022"|
+| 1       | Could the author name primary sources? | "12/28/2021"| "01/01/2022"|
+| 2       | I am certain, the author cannot share the primary sources.| "12/28/2021"| "01/01/2022"|
+| 3       | Similar request.| "12/28/2021"| "01/01/2022"|
+| 4       | No problem, will share links later tonight.| "12/28/2021"| "01/01/2022"|
+| 5       | Then please send them to my email.| "12/28/2021"| "01/01/2022"|
+| 6       | Why are so certain? | "12/28/2021"| "01/01/2022"|
+| 7       | I am well familiar with the style of publications of the sources.| "12/28/2021"| "01/01/2022"|   
+
+SQL code:
+```SQL
+create table comments_data (
+    idEntry integer primary key autoincrement,
+    content text
+);
+```
+
+#### Table 2: comments_tree
+| idAncestor | idDescendant | idNearestAncestor | level | idSubject | dateCreated |
+|------------|--------------|-------------------|-------|-----------|-------------|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+
+SQL code:
+```SQL
+create table comments_tree (
+    idEntry integer primary key autoincrement,
+    content text
+);
+```
