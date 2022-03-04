@@ -230,51 +230,121 @@ Read: https://habr.com/ru/post/263629/
 
 ### Closure Table combined with Adjancy List
 
-#### Table 1: comments_data
+#### Table 1: posts
+| postid | content | dateCreated |
+|--------|---------|-------------|
+| 1      | "Post text" | "12/28/2021"|
 
-| idEntry | content | dateCreated | dateUpdated
-|---------|---------| "12/28/2021"| "01/01/2022"|
-| 1       | Could the author name primary sources? | "12/28/2021"| "01/01/2022"|
-| 2       | I am certain, the author cannot share the primary sources.| "12/28/2021"| "01/01/2022"|
-| 3       | Similar request.| "12/28/2021"| "01/01/2022"|
-| 4       | No problem, will share links later tonight.| "12/28/2021"| "01/01/2022"|
-| 5       | Then please send them to my email.| "12/28/2021"| "01/01/2022"|
-| 6       | Why are so certain? | "12/28/2021"| "01/01/2022"|
-| 7       | I am well familiar with the style of publications of the sources.| "12/28/2021"| "01/01/2022"|   
+SQL code:
+```SQL
+create table posts (
+    postid integer primary key autoincrement,
+    content text,
+    dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+#### Table 2: comments_data
+
+| idEntry | content | dateCreated |
+|---------|---------|-------------|
+| 1       | Could the author name primary sources? | "12/28/2021"|
+| 2       | I am certain, the author cannot share the primary sources.| "12/28/2021"|
+| 3       | Similar request.| "12/28/2021"|
+| 4       | No problem, will share links later tonight.| "12/28/2021"|
+| 5       | Then please send them to my email.| "12/28/2021"|
+| 6       | Why are so certain? | "12/28/2021"|
+| 7       | I am well familiar with the style of publications of the sources.| "12/28/2021"|
+
+INSERT INTO comments_data (content) VALUES ('Could the author name primary sources?');
+INSERT INTO comments_data (content) VALUES ('I am certain, the author cannot share the primary sources.');
+INSERT INTO comments_data (content) VALUES ('Similar request.');
+INSERT INTO comments_data (content) VALUES ('No problem, will share links later tonight.');
+INSERT INTO comments_data (content) VALUES ('Then please send them to my email.');
+INSERT INTO comments_data (content) VALUES ('Why are so certain?');
+INSERT INTO comments_data (content) VALUES ('I am well familiar with the style of publications of the sources.');
 
 SQL code:
 ```SQL
 create table comments_data (
     idEntry integer primary key autoincrement,
-    content text
+    content text,
+    dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
-#### Table 2: comments_tree
-| idAncestor | idDescendant | idNearestAncestor | level | idSubject | dateCreated |
+#### Table 3: comments_tree
+| idAncestor | idDescendant | idNearestAncestor | commentLevel | idSubject | dateCreated |
 |------------|--------------|-------------------|-------|-----------|-------------|
 | 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
-| 1          | 1            | 0                 | 0     | 160       | "12/28/2022"|
+| 1          | 2            | 1                 | 1     | 160       | "12/28/2022"|
+| 1          | 3            | 1                 | 1     | 160       | "12/28/2022"|
+| 1          | 4            | 1                 | 1     | 160       | "12/28/2022"|
+| 1          | 5            | 4                 | 2     | 160       | "12/28/2022"|
+| 1          | 6            | 2                 | 2     | 160       | "12/28/2022"|
+| 1          | 7            | 6                 | 3     | 160       | "12/28/2022"|
+| 1          | 2            | 1                 | 1     | 160       | "12/28/2022"|
+| 1          | 6            | 2                 | 2     | 160       | "12/28/2022"|
+| 1          | 7            | 6                 | 3     | 160       | "12/28/2022"|
+| 1          | 3            | 1                 | 1     | 160       | "12/28/2022"|
+| 1          | 4            | 1                 | 1     | 160       | "12/28/2022"|
+| 1          | 5            | 4                 | 2     | 160       | "12/28/2022"|
+| 1          | 5            | 4                 | 2     | 160       | "12/28/2022"|
+| 1          | 6            | 2                 | 2     | 160       | "12/28/2022"|
+| 1          | 7            | 6                 | 3     | 160       | "12/28/2022"|
+| 1          | 7            | 6                 | 3     | 160       | "12/28/2022"|
+
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (1,1,0,0,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (1,2,1,1,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (1,3,1,1,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (1,4,1,1,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (1,5,4,2,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (1,6,2,2,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (1,7,6,3,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (2,2,1,1,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (2,6,2,2,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (2,7,6,3,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (3,3,1,1,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (4,4,1,1,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (4,5,4,2,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (5,5,4,2,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (6,6,2,2,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (6,7,6,3,160);
+INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (7,7,6,3,160);
 
 SQL code:
 ```SQL
 create table comments_tree (
-    idEntry integer primary key autoincrement,
-    content text
+    idAncestor int,
+    idDescendant int,
+    idNearestAncestor int,
+    commentLevel int, 
+    idSubject int,
+    dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (idAncestor, idDescendant)
 );
 ```
+
+Query to build a tree:
+```SQL
+SELECT 
+tableData.idEntry,
+tableData.content,
+tableTree.idAncestor, 
+tableTree.idDescendant, 
+tableTree.idNearestAncestor, 
+tableTree.commentLevel, 
+tableTree.idSubject 
+FROM comments_data AS tableData
+JOIN comments_tree AS tableTree 
+ON tableData.idEntry = tableTree.idDescendant
+WHERE tableTree.idAncestor = 1;
+```
+
+
+Plan:
+1. DONE - Finish creating all tables for closure (3 tables)
+2. DONE - Write a function to create a post (INSERT), it returns post_id
+3. Write a function to create a comment to main post. args = (post_id, comment_content, ). Return comment_id
+4. Write a function to reply to a comment. args = (post_id, comment_id, comment_content). Return comment_id
+5. Write a function to generate a sorted tree.
