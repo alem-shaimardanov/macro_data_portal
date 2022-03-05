@@ -345,6 +345,6 @@ WHERE tableTree.idAncestor = 1;
 Plan:
 1. DONE - Finish creating all tables for closure (3 tables)
 2. DONE - Write a function to create a post (INSERT), it returns post_id
-3. Write a function to create a comment to main post. args = (post_id, comment_content, ). Return comment_id
-4. Write a function to reply to a comment. args = (post_id, comment_id, comment_content). Return comment_id
-5. Write a function to generate a sorted tree.
+3. DONE - Write a function to create a comment to main post. args = (post_id, comment_content, ). Return comment_id
+4. DONE - Write a function to reply to a comment. args = (post_id, comment_id, comment_content). Return comment_id
+5. DONE - Write a function to generate a sorted tree.
