@@ -1,6 +1,7 @@
 import sqlite3
 import json
 indicator_name = "ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН"
+post_id = '1'
 
 db_file = 'taldau_indicator1.db'
 
@@ -26,6 +27,7 @@ try:
     for item in json_object:
         print("Type of item: ", type(item))
         print("ITEM: ", item)
+
         print("------------------------------------------------------")
         # if i < 1:
         #     cur_term_items_list = item['termNames']
