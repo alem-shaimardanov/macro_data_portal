@@ -166,7 +166,7 @@ def delete_comment_branch(post_id, root_comment_id):
             cur.execute("DELETE FROM comments_data where idEntry = " + str(idEntry))
             
             # Delete rows from comments_tree
-            cur.execute("DELETE FROM comments_tree where idAncestor = " + str(idEntry) + " and idSubject = " + post_id)
+            cur.execute("DELETE FROM comments_tree where idDescendant = " + str(idEntry) + " and idSubject = " + post_id)
 
         # # Save (commit) the changes
         con.commit()
