@@ -24,6 +24,7 @@ cur.execute('''
     idEntry integer primary key autoincrement,
     content text,
     post_id int,
+    comment_sum int,
     dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )''')
 

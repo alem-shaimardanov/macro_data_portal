@@ -79,7 +79,12 @@ for ind in excel_data_df.index:
     
     
     # Check if this is the main key
-    if isinstance(current_col1_val, str) and len(current_col1_val) < 3 and v_tom_chisle_gen1 == False:
+    # if isinstance(current_col1_val, str) and len(current_col1_val) < 3 and v_tom_chisle_gen1 == False:
+    if isinstance(current_col1_val, str) and len(current_col1_val) < 3:
+        # Set v_tom_chisle_gen1 and v_tom_chisle_gen2 to False
+        v_tom_chisle_gen1 = False
+        v_tom_chisle_gen2 = False
+        
         # Add main key to the excel_json
         excel_json_gen0[current_col2_val] = "nan" if isfloat(current_col3_val) else current_col3_val
     
@@ -148,5 +153,7 @@ print("Final JSON:")
 print(excel_json_gen0)
 
 # Save dict in json
-with open('minfin_formatted.json', 'w') as json_file:
-    json.dump(excel_json_gen0, json_file)
+# indicator_name = "ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН"
+# json_file_name = indicator_name + ".json"
+# with open(json_file_name, 'w') as json_file:
+#     json.dump(excel_json_gen0, json_file)
