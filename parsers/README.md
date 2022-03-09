@@ -205,7 +205,7 @@ Algorithm:
 - [x] use SQL queries to access ids of source_names
 - [x] remove current_dir
 - [x] set by default null when creating tables
-- [ ] add oblast's to tables and be able to use them to choose specific name,date,value records
+- [x] add oblast's to tables and be able to use them to choose specific name,date,value records
 
 - Create table to store termname_category_id, termname_ids
 region | VKO

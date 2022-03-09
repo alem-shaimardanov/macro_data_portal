@@ -111,14 +111,82 @@ def reply_to_comment(post_id, comment_content, root_comment_id):
         return -1
 
 
+
+def print_tree(ancestor_id):
+    try:
+        cur.execute('''
+        SELECT tableData.idEntry, 
+        tableData.content, 
+        tableTree.idAncestor, 
+        tableTree.idDescendant, 
+        tableTree.idNearestAncestor, 
+        tableTree.commentLevel, 
+        tableTree.idSubject 
+        FROM comments_data AS tableData 
+        JOIN comments_tree AS tableTree 
+        ON tableData.idEntry = tableTree.idDescendant 
+        WHERE tableTree.idAncestor = ''' + ancestor_id)
+        records = cur.fetchall()
+
+        print("Type of records: ", type(records))
+        print("Values: ",records)
+        return 1
+    except:
+        con.rollback()
+        return -1
+
+    
+
+def delete_comment_branch(post_id, root_comment_id):
+    try:
+        # DELETE FROM comments_data where idEntry = root_comment_id;
+        # Fetch tree of comments
+        cur.execute('''
+        SELECT tableData.idEntry, 
+        tableData.content, 
+        tableTree.idAncestor, 
+        tableTree.idDescendant, 
+        tableTree.idNearestAncestor, 
+        tableTree.commentLevel, 
+        tableTree.idSubject 
+        FROM comments_data AS tableData 
+        JOIN comments_tree AS tableTree 
+        ON tableData.idEntry = tableTree.idDescendant 
+        WHERE tableTree.idAncestor = ''' + root_comment_id)
+        records = cur.fetchall()
+        idEntry_list = []
+        for record in records:
+            idEntry_list.append(record[0])
+        print("idEntry list: ", idEntry_list)
+
+        # Loop through idEntry list:
+        for idEntry in idEntry_list:
+
+            # Delete rows from comments_data 
+            cur.execute("DELETE FROM comments_data where idEntry = " + str(idEntry))
+            
+            # Delete rows from comments_tree
+            cur.execute("DELETE FROM comments_tree where idAncestor = " + str(idEntry) + " and idSubject = " + post_id)
+
+        # # Save (commit) the changes
+        con.commit()
+
+        return 1
+    except:
+        con.rollback()
+        return -1
+
+
 stop = False
 while not stop:
     print("Operations:")
+    print("0 : Exit")
     print("1 : Create a post")
     print("2 : Write a comment to the main post")
     print("3 : Reply to a comment")
     print("4 : Print comments in tree format")
-    print("5 : Exit")
+    print("5 : Delete comment and its branch")
+    print("6 : Delete post and all its comments")
     operation = input("Type number to choose an operation:")
     if operation == '1':
         post_content = input("Type text of post: ")
@@ -142,12 +210,24 @@ while not stop:
         print("++++++++++++++++++++++++++++")
 
     elif operation == '4':
-        pass
+        ancestor_id = input("Enter root_comment_id of branch to be printed: ")
+        res = print_tree(ancestor_id)
+        print("Res of function: ", res)
+        print("++++++++++++++++++++++++++++")
     
     elif operation == '5':
+        post_id = input("Enter post_id: ")
+        root_comment_id = input("Enter comment_id to be deleted:")
+        res = delete_comment_branch(post_id, root_comment_id)
+        print("Res of function: ", res)
+        print("++++++++++++++++++++++++++++")
+
+    elif operation == '6':
+        stop = True
+
+    elif operation == '0':
         stop = True
     
     else:
         print("Enter a valid number")
         pass
-    
