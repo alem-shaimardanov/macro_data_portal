@@ -22,7 +22,9 @@ cur.execute('''
 cur.execute('''
     create table comments_data (
     idEntry integer primary key autoincrement,
-    content text
+    content text,
+    post_id int,
+    dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )''')
 
 

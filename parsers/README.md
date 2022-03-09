@@ -246,29 +246,30 @@ create table posts (
 
 #### Table 2: comments_data
 
-| idEntry | content | dateCreated |
-|---------|---------|-------------|
-| 1       | Could the author name primary sources? | "12/28/2021"|
-| 2       | I am certain, the author cannot share the primary sources.| "12/28/2021"|
-| 3       | Similar request.| "12/28/2021"|
-| 4       | No problem, will share links later tonight.| "12/28/2021"|
-| 5       | Then please send them to my email.| "12/28/2021"|
-| 6       | Why are so certain? | "12/28/2021"|
-| 7       | I am well familiar with the style of publications of the sources.| "12/28/2021"|
+| idEntry | content | post_id | dateCreated |
+|---------|---------|---------|-------------|
+| 1       | Could the author name primary sources? | 1 | "12/28/2021"|
+| 2       | I am certain, the author cannot share the primary sources.| 1 | "12/28/2021"|
+| 3       | Similar request.| 1 | "12/28/2021"|
+| 4       | No problem, will share links later tonight.| 1 | "12/28/2021"|
+| 5       | Then please send them to my email.| 1 | "12/28/2021"|
+| 6       | Why are so certain? | 1 | "12/28/2021"|
+| 7       | I am well familiar with the style of publications of the sources.| 1 | "12/28/2021"|
 
-INSERT INTO comments_data (content) VALUES ('Could the author name primary sources?');
-INSERT INTO comments_data (content) VALUES ('I am certain, the author cannot share the primary sources.');
-INSERT INTO comments_data (content) VALUES ('Similar request.');
-INSERT INTO comments_data (content) VALUES ('No problem, will share links later tonight.');
-INSERT INTO comments_data (content) VALUES ('Then please send them to my email.');
-INSERT INTO comments_data (content) VALUES ('Why are so certain?');
-INSERT INTO comments_data (content) VALUES ('I am well familiar with the style of publications of the sources.');
+INSERT INTO comments_data (content, post_id) VALUES ('Could the author name primary sources?',1);
+INSERT INTO comments_data (content, post_id) VALUES ('I am certain, the author cannot share the primary sources.',1);
+INSERT INTO comments_data (content, post_id) VALUES ('Similar request.',1);
+INSERT INTO comments_data (content, post_id) VALUES ('No problem, will share links later tonight.',1);
+INSERT INTO comments_data (content, post_id) VALUES ('Then please send them to my email.',1);
+INSERT INTO comments_data (content, post_id) VALUES ('Why are so certain?',1);
+INSERT INTO comments_data (content, post_id) VALUES ('I am well familiar with the style of publications of the sources.',1);
 
 SQL code:
 ```SQL
 create table comments_data (
     idEntry integer primary key autoincrement,
     content text,
+    post_id int,
     dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```

@@ -35,7 +35,7 @@ def create_post(post_content):
 def add_comment(post_id, comment_content):
     try:
         # Insert a comment into 'comments_data' table
-        cur.execute("INSERT INTO comments_data (content) VALUES ('" + comment_content + "')")
+        cur.execute("INSERT INTO comments_data (content, post_id) VALUES ('" + comment_content + "','" + post_id + "')")
 
         # Retrieve the comment id of a newly created comment
         cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content + "'")
@@ -75,7 +75,7 @@ def reply_to_comment(post_id, comment_content, root_comment_id):
         comment_reply_level = comment_level + 1
 
         # Insert comment_text into 'comments_data' table
-        cur.execute("INSERT INTO comments_data (content) VALUES ('" + comment_content + "')")
+        cur.execute("INSERT INTO comments_data (content, post_id) VALUES ('" + comment_content + "','" + post_id + "')")
 
         # Retrieve the comment id of a newly created comment
         cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content + "'")
@@ -176,6 +176,25 @@ def delete_comment_branch(post_id, root_comment_id):
         con.rollback()
         return -1
 
+def delete_post(post_id):
+    try:
+        # Delete post from the 'posts' table
+        cur.execute("DELETE FROM posts where postid =" + post_id)
+
+        # Delete all rows related to the target post from 'comments_tree' table
+        cur.execute("DELETE FROM comments_tree where idSubject =" + post_id)
+
+        # Delete all rows related to the target post from 'comments_data' table
+        cur.execute("DELETE FROM comments_data where post_id =" + post_id)
+
+        # # Save (commit) the changes
+        con.commit()
+
+        return 1
+
+    except:
+        con.rollback()
+        return -1
 
 stop = False
 while not stop:
@@ -223,7 +242,10 @@ while not stop:
         print("++++++++++++++++++++++++++++")
 
     elif operation == '6':
-        stop = True
+        post_id = input("Enter post_id to be deleted: ")
+        res = delete_post(post_id)
+        print("Res of function: ", res)
+        print("++++++++++++++++++++++++++++")
 
     elif operation == '0':
         stop = True
