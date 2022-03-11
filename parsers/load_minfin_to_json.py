@@ -78,8 +78,7 @@ for ind in excel_data_df.index:
     current_col3_val = excel_data_df[column3][ind]
     
     
-    # Check if this is the main key
-    # if isinstance(current_col1_val, str) and len(current_col1_val) < 3 and v_tom_chisle_gen1 == False:
+    # 1. Check if this is the main key
     if isinstance(current_col1_val, str) and len(current_col1_val) < 3:
         # Set v_tom_chisle_gen1 and v_tom_chisle_gen2 to False
         v_tom_chisle_gen1 = False
@@ -90,9 +89,10 @@ for ind in excel_data_df.index:
         # excel_json_gen0[current_col2_val] = -1 if not isfloat(current_col3_val) else current_col3_val
         excel_json_gen0[current_col2_val] = current_col3_val if (isfloat(current_col3_val)) and not math.isnan(current_col3_val) else "nan"
         # res = num if (isfloat(num) and not math.isnan(num)) else -1
-    
-    # Check if cur value is v_tom_chisle of gen1
-    elif current_col2_val == v_tom_chisle and v_tom_chisle_gen1 == False:
+        print(" 1 TYPE of current_col3_val: ", " ; KEY: ",current_col2_val)
+
+    # 2. Check if cur value is key_v_tom_chisle of gen1
+    elif current_col2_val == v_tom_chisle and v_tom_chisle_gen1 == False and v_tom_chisle_gen2 == False:
         # Set v_tom_chisle_gen1 to True
         v_tom_chisle_gen1 = True
         
@@ -105,10 +105,10 @@ for ind in excel_data_df.index:
         
         # Update prev_v_tom_chisle_key
         prev_v_tom_chisle_key_gen1 = key_gen1
+        print(" 2 TYPE of current_col3_val: ", " ; KEY: ",current_col2_val)
         
-        
-    # Check if cur value is v_tom_chisle of gen2
-    elif current_col2_val == v_tom_chisle and v_tom_chisle_gen1:
+    # 3. Check if cur value is key_v_tom_chisle of gen2
+    elif current_col2_val == v_tom_chisle and v_tom_chisle_gen1 == True and v_tom_chisle_gen2 == False:
         # Set v_tom_chisle_gen2 to True
         v_tom_chisle_gen2 = True
         
@@ -121,36 +121,30 @@ for ind in excel_data_df.index:
         
         # Update prev_v_tom_chisle_key
         prev_v_tom_chisle_key_gen2 = key_gen2
-        
+        print(" 3 TYPE of current_col3_val: ", " ; KEY: ",current_col2_val)
     
-    # Check if cur value belongs to dict_gen2
-    elif v_tom_chisle_gen1 and v_tom_chisle_gen2:
-        print("TYPE of current_col3_val: ", type(current_col3_val), " ; VALUE: ",current_col3_val)
-        excel_json_gen0[prev_v_tom_chisle_key_gen1][prev_v_tom_chisle_key_gen2][current_col2_val] = current_col3_val if (isfloat(current_col3_val)) and not math.isnan(current_col3_val) else "nan"
-        
-    
-    # Check if cur value is a dash_str and you just finished filling the dict_gen_2 
+
+    # 5. Check if cur value belongs to dict_gen1 and is a dash_str and you just finished filling the dict_gen_2 
     elif isinstance(current_col2_val, str) and isDashString(current_col2_val) and v_tom_chisle_gen2 and v_tom_chisle_gen1:
         v_tom_chisle_gen2 = False # This means you're done with filling the dict_gen2. Work with dict_gen1
         
         # Add dash_str to dict_gen1
-        print("TYPE of current_col3_val: ", type(current_col3_val), " ; VALUE: ",current_col3_val)
+        print(" 5 TYPE of current_col3_val: ", " ; KEY: ",current_col2_val)
         excel_json_gen0[prev_v_tom_chisle_key_gen1][current_col2_val] = current_col3_val if (isfloat(current_col3_val)) and not math.isnan(current_col3_val) else "nan"
     
-    # Check if cur value is a dash_str and you've previously added other dash_str
+    # 6. Check if cur value is a dash_str and you've previously added other dash_str
     elif isinstance(current_col2_val, str) and isDashString(current_col2_val) and v_tom_chisle_gen2 == False and v_tom_chisle_gen1:
-         # Add dash_str to dict_gen1
-        print("TYPE of current_col3_val: ", type(current_col3_val), " ; VALUE: ",current_col3_val)
+        # Add dash_str to dict_gen1
+        print(" 6 TYPE of current_col3_val: ", " ; KEY: ",current_col2_val)
         excel_json_gen0[prev_v_tom_chisle_key_gen1][current_col2_val] = current_col3_val if (isfloat(current_col3_val)) and not math.isnan(current_col3_val) else "nan"
     
-    # Check if cur value is a main key
-    elif isinstance(current_col1_val, str) and len(current_col1_val) < 3:
-        v_tom_chisle_gen1 = False
+    # 4. Check if cur value belongs to dict_gen2
+    elif v_tom_chisle_gen1 and v_tom_chisle_gen2:
+        print(" 4 TYPE of current_col3_val: ", " ; KEY: ",current_col2_val)
+        excel_json_gen0[prev_v_tom_chisle_key_gen1][prev_v_tom_chisle_key_gen2][current_col2_val] = current_col3_val if (isfloat(current_col3_val)) and not math.isnan(current_col3_val) else "nan"
         
-        # Add main key to dict_gen0
-        print("TYPE of current_col3_val: ", type(current_col3_val), " ; VALUE: ",current_col3_val)
-        excel_json_gen0[current_col2_val]= current_col3_val if (isfloat(current_col3_val)) and not math.isnan(current_col3_val) else "nan"
-        
+    
+       
     # Update prev_key
     prev_key = current_col2_val
 
@@ -159,7 +153,9 @@ print("Final JSON:")
 print(excel_json_gen0)
 
 # Save dict in json
-indicator_name = "ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН"
-json_file_name = indicator_name + ".json"
-with open(json_file_name, 'w') as json_file:
-    json.dump(excel_json_gen0, json_file)
+# indicator_name = "ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН"
+# json_file_name = indicator_name + ".json"
+# with open(json_file_name, 'w') as json_file:
+#     json.dump(excel_json_gen0, json_file)
+
+

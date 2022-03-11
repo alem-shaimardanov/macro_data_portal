@@ -349,3 +349,9 @@ Plan:
 3. DONE - Write a function to create a comment to main post. args = (post_id, comment_content, ). Return comment_id
 4. DONE - Write a function to reply to a comment. args = (post_id, comment_id, comment_content). Return comment_id
 5. DONE - Write a function to generate a sorted tree.
+
+
+To-dos:
+1. Fix minfin excel to JSON (bold categories are currently considered as values of other equiavalent bold categories)
+2. Navigate through JSON to be able to access any item and its sum.
+3. Insert values from JSON into closure table.
