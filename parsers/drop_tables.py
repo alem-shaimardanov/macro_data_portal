@@ -41,37 +41,46 @@ cur = con.cursor()
 
 # result = cur.fetchall()
 
-# Drop 'indicators_main' table
-cur.execute('''drop table indicators_main''')
+###### Drop tables related to Taldau: #########
+# # Drop 'indicators_main' table
+# cur.execute('''drop table indicators_main''')
 
-# Drop 'source_names' table
-cur.execute('''drop table source_names''')
+# # Drop 'source_names' table
+# cur.execute('''drop table source_names''')
 
-# Drop 'periods' table
-cur.execute('''drop table periods''')
+# # Drop 'periods' table
+# cur.execute('''drop table periods''')
 
-# Drop 'indicator_period_combo' table
-cur.execute('''drop table indicator_period_combo''')
+# # Drop 'indicator_period_combo' table
+# cur.execute('''drop table indicator_period_combo''')
 
-# Drop 'term_item_names' table
-cur.execute('''drop table term_item_names''')
+# # Drop 'term_item_names' table
+# cur.execute('''drop table term_item_names''')
 
-# Drop 'term_category_groups' table
-cur.execute('''drop table term_category_groups''')
+# # Drop 'term_category_groups' table
+# cur.execute('''drop table term_category_groups''')
 
-# Drop 'term_category_names' table
-cur.execute('''drop table term_category_names''')
+# # Drop 'term_category_names' table
+# cur.execute('''drop table term_category_names''')
 
-# Drop 'term_item_groups' table
-cur.execute('''drop table term_item_groups''')
+# # Drop 'term_item_groups' table
+# cur.execute('''drop table term_item_groups''')
 
-# Drop 'term_item_group_indic_periods' table
-cur.execute('''drop table term_item_group_indic_periods''')
+# # Drop 'term_item_group_indic_periods' table
+# cur.execute('''drop table term_item_group_indic_periods''')
 
 
-# Drop 'taldau_values' table
-cur.execute('''drop table taldau_values''')
+# # Drop 'taldau_values' table
+# cur.execute('''drop table taldau_values''')
 
+# Drop 'posts' table
+cur.execute('''drop table posts''')
+
+# Drop 'comments_data' table
+cur.execute('''drop table comments_data''')
+
+# Drop 'comments_tree' table
+cur.execute('''drop table comments_tree''')
 
 # Save (commit) the changes
 con.commit()

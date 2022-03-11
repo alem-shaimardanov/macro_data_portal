@@ -352,6 +352,8 @@ Plan:
 
 
 To-dos:
-1. Fix minfin excel to JSON (bold categories are currently considered as values of other equiavalent bold categories)
-2. Navigate through JSON to be able to access any item and its sum.
-3. Insert values from JSON into closure table.
+1. DONE - Fix minfin excel to JSON (bold categories are currently considered as values of other equiavalent bold categories)
+2. DONE - Navigate through JSON to be able to access any item and its sum.
+3.  Insert values from JSON into closure table.
+
+Idea: retrieve id of comment to which you want to reply. Then add a reply.

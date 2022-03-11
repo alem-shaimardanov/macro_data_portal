@@ -196,60 +196,60 @@ def delete_post(post_id):
         con.rollback()
         return -1
 
-stop = False
-while not stop:
-    print("Operations:")
-    print("0 : Exit")
-    print("1 : Create a post")
-    print("2 : Write a comment to the main post")
-    print("3 : Reply to a comment")
-    print("4 : Print comments in tree format")
-    print("5 : Delete comment and its branch")
-    print("6 : Delete post and all its comments")
-    operation = input("Type number to choose an operation:")
-    if operation == '1':
-        post_content = input("Type text of post: ")
-        res = create_post(post_content)
-        print("Res of function: ",res)
-        print("++++++++++++++++++++++++++++")
+# stop = False
+# while not stop:
+#     print("Operations:")
+#     print("0 : Exit")
+#     print("1 : Create a post")
+#     print("2 : Write a comment to the main post")
+#     print("3 : Reply to a comment")
+#     print("4 : Print comments in tree format")
+#     print("5 : Delete comment and its branch")
+#     print("6 : Delete post and all its comments")
+#     operation = input("Type number to choose an operation:")
+#     if operation == '1':
+#         post_content = input("Type text of post: ")
+#         res = create_post(post_content)
+#         print("Res of function: ",res)
+#         print("++++++++++++++++++++++++++++")
 
-    elif operation == '2':
-        post_id = input("Enter post_id: ")
-        comment_text = input("Enter text of comment: ")
-        res = add_comment(post_id, comment_text)
-        print("Res of function: ", res)
-        print("++++++++++++++++++++++++++++")
+#     elif operation == '2':
+#         post_id = input("Enter post_id: ")
+#         comment_text = input("Enter text of comment: ")
+#         res = add_comment(post_id, comment_text)
+#         print("Res of function: ", res)
+#         print("++++++++++++++++++++++++++++")
     
-    elif operation == '3':
-        post_id = input("Enter post_id: ")
-        root_comment_id = input("Enter id of comment to which you want to reply: ")
-        comment_text = input("Enter text of comment: ")
-        res = reply_to_comment(post_id, comment_text, root_comment_id)
-        print("Res of function: ", res)
-        print("++++++++++++++++++++++++++++")
+#     elif operation == '3':
+#         post_id = input("Enter post_id: ")
+#         root_comment_id = input("Enter id of comment to which you want to reply: ")
+#         comment_text = input("Enter text of comment: ")
+#         res = reply_to_comment(post_id, comment_text, root_comment_id)
+#         print("Res of function: ", res)
+#         print("++++++++++++++++++++++++++++")
 
-    elif operation == '4':
-        ancestor_id = input("Enter root_comment_id of branch to be printed: ")
-        res = print_tree(ancestor_id)
-        print("Res of function: ", res)
-        print("++++++++++++++++++++++++++++")
+#     elif operation == '4':
+#         ancestor_id = input("Enter root_comment_id of branch to be printed: ")
+#         res = print_tree(ancestor_id)
+#         print("Res of function: ", res)
+#         print("++++++++++++++++++++++++++++")
     
-    elif operation == '5':
-        post_id = input("Enter post_id: ")
-        root_comment_id = input("Enter comment_id to be deleted:")
-        res = delete_comment_branch(post_id, root_comment_id)
-        print("Res of function: ", res)
-        print("++++++++++++++++++++++++++++")
+#     elif operation == '5':
+#         post_id = input("Enter post_id: ")
+#         root_comment_id = input("Enter comment_id to be deleted:")
+#         res = delete_comment_branch(post_id, root_comment_id)
+#         print("Res of function: ", res)
+#         print("++++++++++++++++++++++++++++")
 
-    elif operation == '6':
-        post_id = input("Enter post_id to be deleted: ")
-        res = delete_post(post_id)
-        print("Res of function: ", res)
-        print("++++++++++++++++++++++++++++")
+#     elif operation == '6':
+#         post_id = input("Enter post_id to be deleted: ")
+#         res = delete_post(post_id)
+#         print("Res of function: ", res)
+#         print("++++++++++++++++++++++++++++")
 
-    elif operation == '0':
-        stop = True
+#     elif operation == '0':
+#         stop = True
     
-    else:
-        print("Enter a valid number")
-        pass
+#     else:
+#         print("Enter a valid number")
+#         pass

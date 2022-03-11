@@ -153,9 +153,9 @@ print("Final JSON:")
 print(excel_json_gen0)
 
 # Save dict in json
-# indicator_name = "ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН"
-# json_file_name = indicator_name + ".json"
-# with open(json_file_name, 'w') as json_file:
-#     json.dump(excel_json_gen0, json_file)
+indicator_name = "ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН"
+json_file_name = indicator_name + ".json"
+with open(json_file_name, 'w') as json_file:
+    json.dump(excel_json_gen0, json_file)
 
 
