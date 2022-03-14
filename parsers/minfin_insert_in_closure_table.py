@@ -4,7 +4,6 @@ import json
 import insert_in_closure_table
 
 indicator_name = "ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН"
-post_id = '1'
 month_name = "1 ФЕВРАЛЯ 2022 ГОДА "
 
 db_file = 'taldau_indicator1.db'
@@ -41,9 +40,6 @@ try:
     idAncestor = records[0][0]
     idNearestAncestor = records[0][1]
     commentLevel = records[0][1]
-    print("idAncestor: ",idAncestor)
-    print("idNearestAncestor: ",idNearestAncestor)
-    print("commentLevel: ",commentLevel)
     ############################
 
     v_tom_chisle_gen1 = False
@@ -59,10 +55,6 @@ try:
     # Iterate through the json list:
     for item in json_object:
 
-        # print("Type of item: ", type(item))
-        # print("ITEM: ", item, " ; VALUE: ", json_object[item])
-        # prev_level_comment_id = comment_id
-
         # Check if the current item is a main category and not a dict
         if v_tom_chisle not in item and v_tom_chisle_gen1 == False and v_tom_chisle_gen2 == False:
             content = item
@@ -73,7 +65,7 @@ try:
             print("---+++---+++---+++---+++---")
 
             # Insert subcomment under "1 february" comment. Insert row into 'comments_data' table and relevant rows into 'comments_tree' table.
-            subcomment_lvl1_id = insert_in_closure_table.reply_to_comment(str(post_id), content, str(recent_level0_comment_id))
+            subcomment_lvl1_id = insert_in_closure_table.reply_to_comment(str(post_id), content, str(recent_level0_comment_id), str(comment_sum))
             print("Subcomment level 1 id: ", subcomment_lvl1_id)
             recent_level1_comment_id = subcomment_lvl1_id
 
@@ -89,7 +81,7 @@ try:
                     comment_sum = json_object[item][elem]
 
                     # Insert subcomment under main category comment. Insert row into 'comments_data' table and relevant rows into 'comments_tree' table.
-                    subcomment_lvl2_id = insert_in_closure_table.reply_to_comment(str(post_id), content, str(recent_level1_comment_id))
+                    subcomment_lvl2_id = insert_in_closure_table.reply_to_comment(str(post_id), content, str(recent_level1_comment_id), str(comment_sum))
                     
                     recent_level2_comment_id = subcomment_lvl2_id
                     
@@ -103,7 +95,7 @@ try:
                         comment_sum = json_object[item][elem][sub_elem]
 
                         # Insert subcomment under main category comment. Insert row into 'comments_data' table and relevant rows into 'comments_tree' table.
-                        subcomment_lvl3_id = insert_in_closure_table.reply_to_comment(str(post_id), content, str(recent_level2_comment_id))
+                        subcomment_lvl3_id = insert_in_closure_table.reply_to_comment(str(post_id), content, str(recent_level2_comment_id), str(comment_sum))
                         print("Subcomment level 3 id: ", subcomment_lvl3_id)
                         recent_level3_comment_id = subcomment_lvl3_id
             
@@ -111,29 +103,12 @@ try:
             v_tom_chisle_gen1 = False
             v_tom_chisle_gen2 = False
 
-        
-    
-        '''
-        Before:
-        1. Insert 'otchet o post...' to 'posts' table. Return its post_id.
-        2. Insert 'feb 2022' to 'comments_data' table. Return its comment_id.
-        3. Insert into 'comments_tree' (idAncestor, idDescendant, idNearestAncestor, commentLevel, post_id)
-            values (comment_id, comment_id, 0, 0, post_id).
-        
-        Logic:
-        1. if main key found (v_tom_chisle not in item_name and v_tom_chisle_gen1 == False and v_tom_chisle_gen2 == False):
-            
-        2. elif 
-        '''
-
 
         
 except:
     print("ERROR")
     con.rollback()
 # -----------------------------------------------
-
-
 
 
 

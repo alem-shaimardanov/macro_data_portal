@@ -32,10 +32,16 @@ def create_post(post_content):
         return -1
 
 # Function to Add a comment to the main post
-def add_comment(post_id, comment_content):
+def add_comment(post_id, comment_content, comment_sum="nan"):
     try:
-        # Insert a comment into 'comments_data' table
-        cur.execute("INSERT INTO comments_data (content, post_id) VALUES ('" + comment_content + "','" + post_id + "')")
+        # if comment_sum is nan, insert content and post_id only into 'comments_data' table
+        if comment_sum == 'nan':
+            # Insert a comment into 'comments_data' table
+            cur.execute("INSERT INTO comments_data (content, post_id) VALUES ('" + comment_content + "','" + post_id + "')")
+        
+        else:
+            # Insert a comment into 'comments_data' table
+            cur.execute("INSERT INTO comments_data (content, post_id, comment_sum) VALUES ('" + comment_content + "','" + post_id + "','" + comment_sum + "')")
 
         # Retrieve the comment id of a newly created comment
         cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content + "'")
@@ -61,7 +67,7 @@ def add_comment(post_id, comment_content):
 
 
 # Function to Reply to a comment
-def reply_to_comment(post_id, comment_content, root_comment_id):
+def reply_to_comment(post_id, comment_content, root_comment_id, comment_sum="nan"):
     try:
         # Retrieve commentLevel of the comment to which user replies
         cur.execute("SELECT idAncestor, commentLevel from comments_tree WHERE idAncestor='" + root_comment_id + "'and idDescendant='" + root_comment_id + "'")
@@ -74,8 +80,15 @@ def reply_to_comment(post_id, comment_content, root_comment_id):
         # Increment comment_level of comment_reply_level
         comment_reply_level = comment_level + 1
 
-        # Insert comment_text into 'comments_data' table
-        cur.execute("INSERT INTO comments_data (content, post_id) VALUES ('" + comment_content + "','" + post_id + "')")
+        # if comment_sum is nan, insert content and post_id only into 'comments_data' table
+        if comment_sum == 'nan':
+            # Insert a comment into 'comments_data' table
+            cur.execute("INSERT INTO comments_data (content, post_id) VALUES ('" + comment_content + "','" + post_id + "')")
+        
+        else:
+            # Insert a comment into 'comments_data' table
+            cur.execute("INSERT INTO comments_data (content, post_id, comment_sum) VALUES ('" + comment_content + "','" + post_id + "','" + comment_sum + "')")
+
 
         # Retrieve the comment id of a newly created comment
         cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content + "'")
