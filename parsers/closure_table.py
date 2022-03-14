@@ -37,7 +37,7 @@ cur.execute('''
     idNearestAncestor int,
     commentLevel int, 
     idSubject int,
-    dateCreated smalldatetime,
+    dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (idAncestor, idDescendant)
 )''')
 
