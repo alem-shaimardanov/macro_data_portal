@@ -11,6 +11,13 @@ Sequence of running the files to work with MinFin data:
 1. Run `load_fred_to_json.py` to load FRED indicator into JSON file.
 2. Run `fred_insert_in_closure_table.py` to insert MinFin values in closure table
 
+
+Sequence of running the files to load data from Taldau:
+1. Run `load_json.py` to save json from Taldau;
+2. Run `create_sql_tables.py` to create schema for the SQL tables;
+3. Run `fill_in_non_json_tables.py` to fill in all tables except taldau_values table;
+4. Run `fill_in_json_tables.py` to fill in taldau_values table with the values from Taldau.
+
 - If you want to drop tables from the database, run `drop_tables.py` file.
 
 
@@ -205,7 +212,7 @@ Algorithm:
 5. Close the connection to .db.
 
 
-### Order of running python files:
+### Order of running python files to load data from Taldau:
 1. Run `load_json.py` to save json from Taldau;
 2. Run `create_sql_tables.py` to create schema for the SQL tables;
 3. Run `fill_in_non_json_tables.py` to fill in all tables except taldau_values table;
@@ -385,6 +392,8 @@ Overview, GDP, Housing - main comments
 GDP per capita - subcomment level 1
 Mar 22 - subcomment level 2
 value will go with Mar 22
+
+
 
 
 
