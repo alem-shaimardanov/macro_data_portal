@@ -377,20 +377,15 @@ Idea: retrieve id of comment to which you want to reply. Then add a reply.
 March 15, Tuesday
 To-dos:
 1. DONE - Convert FRED json into closure tables.
-2. Convert Taldau into closure tables.
+2. Parse data from Trading Economics (inflation rate, currencies, GDP)
+3. Convert Trading Economics data into closure tables
 
-GNPCA - post
-date - main_comment
-value - comment_sum
+Kazakhstani indicators - post
+Overview, GDP, Housing - main comments
+GDP per capita - subcomment level 1
+Mar 22 - subcomment level 2
+value will go with Mar 22
 
-SELECT tableData.idEntry, 
-        tableData.content, 
-        tableTree.idAncestor, 
-        tableTree.idDescendant, 
-        tableTree.idNearestAncestor, 
-        tableTree.commentLevel, 
-        tableTree.idSubject 
-        FROM comments_data AS tableData 
-        JOIN comments_tree AS tableTree 
-        ON tableData.idEntry = tableTree.idDescendant 
-        WHERE tableTree.idSubject = 2;
+
+
+
