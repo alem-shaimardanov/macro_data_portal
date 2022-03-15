@@ -1,3 +1,19 @@
+In this repository, you may find the code to load data from Taldau, FRED in JSON format. MinFin data is in Excel format, which we convert into JSON file. All JSON files are converted into closure tables. 
+
+The name of SQL database is `taldau_indicator1.db`
+To read more about Closure Tables, follow the link: [Closure Tables](https://habr.com/ru/post/263629/)
+
+Sequence of running the files to work with MinFin data:
+1. Run `load_minfin_to_json.py` to convert MinFin Excel file into JSON file.
+2. Run `minfin_insert_in_closure_table.py` to insert MinFin values in closure table
+
+Sequence of running the files to work with MinFin data:
+1. Run `load_fred_to_json.py` to load FRED indicator into JSON file.
+2. Run `fred_insert_in_closure_table.py` to insert MinFin values in closure table
+
+- If you want to drop tables from the database, run `drop_tables.py` file.
+
+
 #### Taldau parser
 This is the parser of json from Taldau
 
@@ -377,4 +393,4 @@ SELECT tableData.idEntry,
         FROM comments_data AS tableData 
         JOIN comments_tree AS tableTree 
         ON tableData.idEntry = tableTree.idDescendant 
-        WHERE tableTree.idAncestor = 
+        WHERE tableTree.idSubject = 2;
