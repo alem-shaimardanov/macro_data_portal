@@ -124,7 +124,7 @@ for ind in excel_data_df.index:
         print(" 3 TYPE of current_col3_val: ", " ; KEY: ",current_col2_val)
     
 
-    # 5. Check if cur value belongs to dict_gen1 and is a dash_str and you just finished filling the dict_gen_2 
+    # 4. Check if cur value belongs to dict_gen1 and is a dash_str and you just finished filling the dict_gen_2 
     elif isinstance(current_col2_val, str) and isDashString(current_col2_val) and v_tom_chisle_gen2 and v_tom_chisle_gen1:
         v_tom_chisle_gen2 = False # This means you're done with filling the dict_gen2. Work with dict_gen1
         
@@ -132,13 +132,13 @@ for ind in excel_data_df.index:
         print(" 5 TYPE of current_col3_val: ", " ; KEY: ",current_col2_val)
         excel_json_gen0[prev_v_tom_chisle_key_gen1][current_col2_val] = current_col3_val if (isfloat(current_col3_val)) and not math.isnan(current_col3_val) else "nan"
     
-    # 6. Check if cur value is a dash_str and you've previously added other dash_str
+    # 5. Check if cur value is a dash_str and you've previously added other dash_str
     elif isinstance(current_col2_val, str) and isDashString(current_col2_val) and v_tom_chisle_gen2 == False and v_tom_chisle_gen1:
         # Add dash_str to dict_gen1
         print(" 6 TYPE of current_col3_val: ", " ; KEY: ",current_col2_val)
         excel_json_gen0[prev_v_tom_chisle_key_gen1][current_col2_val] = current_col3_val if (isfloat(current_col3_val)) and not math.isnan(current_col3_val) else "nan"
     
-    # 4. Check if cur value belongs to dict_gen2
+    # 6. Check if cur value belongs to dict_gen2
     elif v_tom_chisle_gen1 and v_tom_chisle_gen2:
         print(" 4 TYPE of current_col3_val: ", " ; KEY: ",current_col2_val)
         excel_json_gen0[prev_v_tom_chisle_key_gen1][prev_v_tom_chisle_key_gen2][current_col2_val] = current_col3_val if (isfloat(current_col3_val)) and not math.isnan(current_col3_val) else "nan"

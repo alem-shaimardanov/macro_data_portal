@@ -13,7 +13,7 @@ indicator_name_1 = "GNPCA"
 
 indicator_names_list = [indicator_name_1]
 
-############## CODE TO LOAD JSON FROM TALDAU #################
+############## CODE TO LOAD JSON FROM FRED #################
 for i in range(len(urls_list)):
     indicator_name = indicator_names_list[i]
     print("Indicator: ", indicator_name)
