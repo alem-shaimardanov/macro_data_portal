@@ -18,6 +18,11 @@ Sequence of running the files to load data from Taldau:
 3. Run `fill_in_non_json_tables.py` to fill in all tables except taldau_values table;
 4. Run `fill_in_json_tables.py` to fill in taldau_values table with the values from Taldau.
 
+Sequence of running the files to load data from Trading Economics:
+1. Make sure you've installed `scrapy` in your machine;
+2. Change directory to `trading_economics`;
+3. In that directory, type: `scrapy crawl gdp -o gdp.json`. (This will load GDP of Asian countries from Trading Economics into `gdp.json` file)
+
 - If you want to drop tables from the database, run `drop_tables.py` file.
 
 
