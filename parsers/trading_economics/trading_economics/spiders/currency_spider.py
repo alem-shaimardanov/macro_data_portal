@@ -3,8 +3,8 @@ from ..items import TradingEconomicsItem
 
 class QuoteSpider(scrapy.Spider):
     # Give the name to a crawler
-    name = 'gdp'
-    start_urls = ['https://tradingeconomics.com/country-list/gdp?continent=world']
+    name = 'currency'
+    start_urls = ['https://tradingeconomics.com/kazakhstan/currency']
 
     def parse(self, response):
         # Create an object of class TradingEconomicsItem class
@@ -22,8 +22,19 @@ class QuoteSpider(scrapy.Spider):
             # If not header, run the following block of code
             if i > 0:
                 country_name = row.xpath('.//td[1]//a/text()').get().rstrip().strip()
-                last_value = row.xpath('.//td[2]/text()').get()
-                prev_value = row.xpath('.//td[3]/text()').get()
+                last_value = row.xpath('.//td[2]//span/text()').get()
+
+                # if last_value is None, use another way to access the value
+                if last_value is None:
+                    last_value = row.xpath('.//td[2]/text()').get()
+                
+                prev_value = row.xpath('.//td[3]//span/text()').get()
+
+                # if prev_value is None, use another way to access the value
+                if prev_value is None:
+                    prev_value = row.xpath('.//td[3]/text()').get()
+                
+
                 reference = row.xpath('.//td[4]//span/text()').get()
                 units = row.xpath('.//td[5]/text()').get()
                 
