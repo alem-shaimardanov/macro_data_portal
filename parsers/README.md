@@ -7,7 +7,7 @@ To read more about Closure Tables, follow the link: [Closure Tables](https://hab
 1. Run `load_minfin_to_json.py` to convert MinFin Excel file into JSON file.
 2. Run `minfin_insert_in_closure_table.py` to insert MinFin values in closure table
 
-#### Sequence of running the files to work with MinFin data:
+#### Sequence of running the files to work with FRED data:
 1. Run `load_fred_to_json.py` to load FRED indicator into JSON file.
 2. Run `fred_insert_in_closure_table.py` to insert MinFin values in closure table
 
@@ -392,7 +392,7 @@ Idea: retrieve id of comment to which you want to reply. Then add a reply.
 March 15, Tuesday
 To-dos:
 1. DONE - Convert FRED json into closure tables.
-2. Parse data from Trading Economics (inflation rate, currencies, GDP)
+2. DONE - Parse data from Trading Economics (inflation rate, currencies, GDP)
 3. Convert Trading Economics data into closure tables
 
 Kazakhstani indicators - post
@@ -402,7 +402,31 @@ Mar 22 - subcomment level 2
 value will go with Mar 22
 
 
+Approach 2:
+GDP - post
+USA - main comment, level 0
+Reference (Date when value was updated) - subcomment, level 1. comment_sum = last_value
+
+? Prev_value
+? Units
+-----------------------
+Inflation - post
+USA - main comment, level 0
+Reference - subcomment, level 1. comment_sum = last_value
+
+-----------------------
+Currency - post
+Symbol - main comment, level 0
+Date - subcomment, level 1. comment_sum = price
+Difference - subcomment, level 1. comment_sum = difference.value
+Day_difference - subcomment, level 1. 
+Year_difference - subcomment, level 1
 
 
 
-
+To-dos:
+1. Convert Trading Economics jsons into closure table (3 indicators).
+2. Load 5 indicators from Taldau into JSONs.
+3. Convert 5 Taldau JSONs into closure table.
+4. Load 5 MinFin datasets into JSONs.
+5. Convert 5 MinFin JSONs into closure table.
