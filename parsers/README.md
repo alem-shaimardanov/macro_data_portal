@@ -3,22 +3,22 @@ In this repository, you may find the code to load data from Taldau, FRED in JSON
 The name of SQL database is `taldau_indicator1.db`
 To read more about Closure Tables, follow the link: [Closure Tables](https://habr.com/ru/post/263629/)
 
-Sequence of running the files to work with MinFin data:
+#### Sequence of running the files to work with MinFin data:
 1. Run `load_minfin_to_json.py` to convert MinFin Excel file into JSON file.
 2. Run `minfin_insert_in_closure_table.py` to insert MinFin values in closure table
 
-Sequence of running the files to work with MinFin data:
+#### Sequence of running the files to work with MinFin data:
 1. Run `load_fred_to_json.py` to load FRED indicator into JSON file.
 2. Run `fred_insert_in_closure_table.py` to insert MinFin values in closure table
 
 
-Sequence of running the files to load data from Taldau:
+#### Sequence of running the files to load data from Taldau:
 1. Run `load_json.py` to save json from Taldau;
 2. Run `create_sql_tables.py` to create schema for the SQL tables;
 3. Run `fill_in_non_json_tables.py` to fill in all tables except taldau_values table;
 4. Run `fill_in_json_tables.py` to fill in taldau_values table with the values from Taldau.
 
-Sequence of running the files to load data from Trading Economics:
+#### Sequence of running the files to load data from Trading Economics:
 1. Make sure you've installed `scrapy` in your machine;
 2. Change directory to `trading_economics`;
 3. In that directory, type: `scrapy crawl gdp -o gdp.json`. (This will load GDP of Asian countries from Trading Economics into `gdp.json` file)
