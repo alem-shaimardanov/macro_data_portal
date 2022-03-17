@@ -9,4 +9,10 @@ import scrapy
 class TradingEconomicsItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    country_name = scrapy.Field()
+    last_value = scrapy.Field()
+    prev_value = scrapy.Field()
+    reference = scrapy.Field()
+    units = scrapy.Field()
+    
+    test2 = scrapy.Field()
