@@ -15,4 +15,9 @@ class TradingEconomicsItem(scrapy.Item):
     reference = scrapy.Field()
     units = scrapy.Field()
     
-    test2 = scrapy.Field()
+    symbol = scrapy.Field()
+    price = scrapy.Field()
+    difference = scrapy.Field()
+    day_difference = scrapy.Field()
+    year_difference = scrapy.Field()
+    date = scrapy.Field()

@@ -1,0 +1,21 @@
+[
+{"symbol": "USDKZT", "price": "508.7000 ", "difference": "0.4000", "day_difference": "0.08%", "year_difference": "21.37%", "date": "Mar/17 "},
+{"symbol": "EURKZT", "price": "559.9684 ", "difference": "-0.0766", "day_difference": "-0.01%", "year_difference": "10.75%", "date": "Mar/17 "},
+{"symbol": "GBPKZT", "price": "667.8408 ", "difference": "0.1125", "day_difference": "0.02%", "year_difference": "15.03%", "date": "Mar/17 "},
+{"symbol": "AUDKZT", "price": "371.0790 ", "difference": "0.6706", "day_difference": "0.18%", "year_difference": "14.96%", "date": "Mar/17 "},
+{"symbol": "NZDKZT", "price": "346.8539 ", "difference": "-0.2337", "day_difference": "-0.07%", "year_difference": "15.37%", "date": "Mar/17 "},
+{"symbol": "KZTJPY", "price": "0.2342 ", "difference": "0.0003", "day_difference": "0.12%", "year_difference": "-9.30%", "date": "Mar/17 "},
+{"symbol": "KZTCNY", "price": "0.0125 ", "difference": "0.00003", "day_difference": "0.23%", "year_difference": "-19.11%", "date": "Mar/17 "},
+{"symbol": "KZTCHF", "price": "0.0019 ", "difference": "0.000004", "day_difference": "0.20%", "year_difference": "-16.28%", "date": "Mar/17 "},
+{"symbol": "KZTCAD", "price": "0.0025 ", "difference": "0.000002", "day_difference": "0.09%", "year_difference": "-17.13%", "date": "Mar/17 "},
+{"symbol": "KZTMXN", "price": "0.0407 ", "difference": "0.0001", "day_difference": "0.14%", "year_difference": "-18.51%", "date": "Mar/17 "},
+{"symbol": "KZTINR", "price": "0.1486 ", "difference": "0.0008", "day_difference": "0.56%", "year_difference": "-14.37%", "date": "Mar/15 "},
+{"symbol": "KZTBRL", "price": "0.0101 ", "difference": "0.0001", "day_difference": "1.06%", "year_difference": "-23.41%", "date": "Mar/16 "},
+{"symbol": "KZTRUB", "price": "0.2160 ", "difference": "-0.0257", "day_difference": "-10.63%", "year_difference": "21.76%", "date": "Mar/14 "},
+{"symbol": "KZTKRW", "price": "2.4127 ", "difference": "0.1321", "day_difference": "5.79%", "year_difference": "-10.80%", "date": "Mar/15 "},
+{"symbol": "KZTIDR", "price": "27.8642 ", "difference": "0.1681", "day_difference": "0.61%", "year_difference": "-18.84%", "date": "Mar/15 "},
+{"symbol": "KZTARS", "price": "0.2110 ", "difference": "0.0032", "day_difference": "1.53%", "year_difference": "-2.53%", "date": "Mar/14 "},
+{"symbol": "KZTCZK", "price": "0.0436 ", "difference": "0.0008", "day_difference": "1.95%", "year_difference": "-16.46%", "date": "Mar/14 "},
+{"symbol": "KZTDKK", "price": "0.0133 ", "difference": "0.0001", "day_difference": "0.78%", "year_difference": "-10.73%", "date": "Mar/16 "},
+{"symbol": "KZTHUF", "price": "0.6583 ", "difference": "-0.0018", "day_difference": "-0.27%", "year_difference": "-10.09%", "date": "Mar/15 "}
+]

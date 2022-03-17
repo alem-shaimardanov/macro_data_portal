@@ -10,43 +10,46 @@ class QuoteSpider(scrapy.Spider):
         # Create an object of class TradingEconomicsItem class
         items = TradingEconomicsItem()
 
-        # Load the table from the webpage
-        table = response.xpath('//*[@class="table table-hover table-heatmap"]')
+        # Load all tables from the webpage
+        all_tables = response.xpath('//*[@class="table-responsive markets2 market-border"]')
 
-        # Convert the table into a list of rows by accessing every 'tr' tag
-        rows = table.xpath('//tr')
+        # Load the KZT table from the webpage
+        table = all_tables.xpath('.//div[2]//table[@class="table table-hover sortable-theme-minimal table-heatmap"]//tr')
+        
+
+        # for row in table:
+        #     symbol = row.xpath('.//td[1]//a//b/text()').get()
+        #     price = row.xpath('.//td[2]/text()').get()
+        #     difference = row.xpath('.//td[4]/text()').get()
+        #     day_difference = row.xpath('.//td[5]/text()').get()
+        #     year_difference = row.xpath('.//td[6]/text()').get()
+        #     date = row.xpath('.//td[7]/text()').get()
 
 
         # Loop through rows of table
-        for i, row in enumerate(rows):
+        for i, row in enumerate(table):
             # If not header, run the following block of code
             if i > 0:
-                country_name = row.xpath('.//td[1]//a/text()').get().rstrip().strip()
-                last_value = row.xpath('.//td[2]//span/text()').get()
-
-                # if last_value is None, use another way to access the value
-                if last_value is None:
-                    last_value = row.xpath('.//td[2]/text()').get()
-                
-                prev_value = row.xpath('.//td[3]//span/text()').get()
-
-                # if prev_value is None, use another way to access the value
-                if prev_value is None:
-                    prev_value = row.xpath('.//td[3]/text()').get()
-                
-
-                reference = row.xpath('.//td[4]//span/text()').get()
-                units = row.xpath('.//td[5]/text()').get()
+                symbol = row.xpath('.//td[1]//a//b/text()').get()
+                price = row.xpath('.//td[2]/text()').get()
+                difference = row.xpath('.//td[4]/text()').get()
+                day_difference = row.xpath('.//td[5]/text()').get()
+                year_difference = row.xpath('.//td[6]/text()').get()
+                date = row.xpath('.//td[7]/text()').get()
                 
                 # Add the previous 5 values into 'items' dictionary
-                items['country_name'] = country_name
-                items['last_value'] = last_value
-                items['prev_value'] = prev_value
-                items['reference'] = reference
-                items['units'] = units
+                items['symbol'] = symbol
+                items['price'] = price
+                items['difference'] = difference
+                items['day_difference'] = day_difference
+                items['year_difference'] = year_difference
+                items['date'] = date
 
                 yield items
             
             # If the row is the header, skip it
             else:
                 continue
+
+
+            # Don't be complacent.
