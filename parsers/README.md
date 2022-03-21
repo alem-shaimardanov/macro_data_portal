@@ -430,3 +430,9 @@ To-dos:
 3. Convert 5 Taldau JSONs into closure table.
 4. Load 5 MinFin datasets into JSONs.
 5. Convert 5 MinFin JSONs into closure table.
+6. Build a sample web app with Django to simulate requests from database.
+
+
+Current to-dos:
+1. Convert MinFin excel bullet-in into JSON.
+2. Write MinFin 2nd JSON in closure tables.
