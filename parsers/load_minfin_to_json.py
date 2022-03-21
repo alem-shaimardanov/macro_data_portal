@@ -2,7 +2,7 @@ import pandas
 import json
 import math
 # Read excel document
-excel_data_df = pandas.read_excel('Отчет НФ на 1.02.2022г.xlsx', sheet_name='01.02.2022')
+# excel_data_df = pandas.read_excel('Отчет НФ на 1.02.2022г.xlsx', sheet_name='01.02.2022')
 
 ######################### SOLUTION 1 #############################
 # # Convert excel to string 

@@ -425,10 +425,10 @@ Year_difference - subcomment, level 1
 
 
 To-dos:
-1. Convert Trading Economics jsons into closure table (3 indicators).
-2. Load 5 indicators from Taldau into JSONs.
+1. MUST DO - Convert Trading Economics jsons into closure table (3 indicators).
+2. MUST DO - Load 5 indicators from Taldau into JSONs.
 3. Convert 5 Taldau JSONs into closure table.
-4. Load 5 MinFin datasets into JSONs.
+4. MUST DO - Load 5 MinFin datasets into JSONs.
 5. Convert 5 MinFin JSONs into closure table.
 6. Build a sample web app with Django to simulate requests from database.
 
