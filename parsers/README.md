@@ -436,3 +436,6 @@ To-dos:
 Current to-dos:
 1. Convert MinFin excel bullet-in into JSON.
 2. Write MinFin 2nd JSON in closure tables.
+
+
+Excel Table 3 outline:
