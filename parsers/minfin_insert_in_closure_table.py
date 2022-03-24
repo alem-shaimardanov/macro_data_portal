@@ -4,8 +4,9 @@ import insert_in_closure_table
 
 indicator_name = "ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН"
 file_names_list = ["ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН НА 1 МАЯ 2019 ГОДА",
-                    "ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН НА 1 ФЕВРАЛЯ 2022 ГОДА "]
-month_names_list = ["1 МАЯ 2019 ГОДА", "1 ФЕВРАЛЯ 2022 ГОДА"]
+                    "ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН НА 1 ФЕВРАЛЯ 2022 ГОДА ",
+                    "ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН НА 1 АВГУСТА 2021 ГОДА "]
+month_names_list = ["1 МАЯ 2019 ГОДА", "1 ФЕВРАЛЯ 2022 ГОДА", "1 АВГУСТА 2021 ГОДА"]
 
 db_file = 'taldau_indicator1.db'
 
@@ -18,7 +19,7 @@ cur = con.cursor()
 
 # -----------------------------------------------
 # Read loaded json file
-json_file = open(file_names_list[1] + '.json')
+json_file = open(file_names_list[2] + '.json')
 
 # Return json object as a dictionary
 json_object = json.load(json_file)
@@ -30,7 +31,7 @@ v_tom_chisle = "в том числе"
 try:
     ####### Pre-work ##########
     # Insert period into 'periods' table
-    period_id = insert_in_closure_table.add_period_name(month_names_list[1])
+    period_id = insert_in_closure_table.add_period_name(month_names_list[2])
 
     # Check if post already exists in the 'posts' table
     cur.execute("SELECT COUNT(1) FROM posts WHERE content='" + indicator_name + "'")

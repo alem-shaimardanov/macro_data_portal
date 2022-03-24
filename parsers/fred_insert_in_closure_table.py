@@ -3,7 +3,10 @@ import sqlite3
 from threading import local
 import insert_in_closure_table
 
-indicator_name = "GNPCA"
+indicator_name_1 = "GNPCA"
+indicator_name_2 = "CPIFABSL"
+
+indicator_names_list = [indicator_name_1, indicator_name_2]
 
 db_file = 'taldau_indicator1.db'
 
@@ -16,7 +19,7 @@ cur = con.cursor()
 
 # -----------------------------------------------
 # Read loaded json file
-json_file = open(indicator_name + '.json')
+json_file = open(indicator_name_2 + '.json')
 
 # Return json object as a dictionary
 json_object = json.load(json_file)
@@ -26,7 +29,7 @@ observations = json_object["observations"]
 try:
     ####### Pre-work ##########
     # Insert indicator_name into 'posts' table and retrieve the post_id
-    post_id = insert_in_closure_table.create_post(indicator_name)
+    post_id = insert_in_closure_table.create_post(indicator_name_2)
 
 
     for observation in observations:

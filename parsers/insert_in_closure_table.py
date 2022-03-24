@@ -160,7 +160,7 @@ def print_tree(ancestor_id):
         FROM comments_data AS tableData 
         JOIN comments_tree AS tableTree 
         ON tableData.idEntry = tableTree.idDescendant 
-        WHERE tableTree.idAncestor = ''' + ancestor_id)
+        WHERE tableTree.idSubject = ''' + ancestor_id)
         records = cur.fetchall()
 
         print("Type of records: ", type(records))
@@ -183,7 +183,8 @@ def delete_comment_branch(post_id, root_comment_id):
         tableTree.idDescendant, 
         tableTree.idNearestAncestor, 
         tableTree.commentLevel, 
-        tableTree.idSubject 
+        tableTree.idSubject,
+        tableData.comment_sum 
         FROM comments_data AS tableData 
         JOIN comments_tree AS tableTree 
         ON tableData.idEntry = tableTree.idDescendant 
