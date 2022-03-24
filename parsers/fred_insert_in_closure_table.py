@@ -1,6 +1,5 @@
 import json
 import sqlite3
-from threading import local
 import insert_in_closure_table
 
 indicator_name_1 = "GNPCA"
