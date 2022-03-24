@@ -67,7 +67,7 @@ def add_comment(post_id, comment_content, comment_sum="nan"):
 
 
 # Function to Reply to a comment
-def reply_to_comment(post_id, comment_content, root_comment_id, comment_sum="nan"):
+def reply_to_comment(post_id, comment_content, root_comment_id, period_id, comment_sum="nan"):
     try:
         # Retrieve commentLevel of the comment to which user replies
         cur.execute("SELECT idAncestor, commentLevel from comments_tree WHERE idAncestor='" + root_comment_id + "'and idDescendant='" + root_comment_id + "'")
@@ -91,7 +91,7 @@ def reply_to_comment(post_id, comment_content, root_comment_id, comment_sum="nan
 
 
         # Retrieve the comment id of a newly created comment
-        cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content + "'")
+        cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content + "' and period_id = '" + period_id + "'")
         records = cur.fetchone()
         print("Comment_id: ", records[0])
         comment_id = records[0]
