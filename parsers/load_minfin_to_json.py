@@ -32,10 +32,16 @@ import math
 ##################################################################
 
 ######################### SOLUTION 2 #############################
-excel_data_df = pandas.read_excel('Отчет НФ на 1.02.2022г.xlsx', sheet_name='01.02.2022')
+excel_name1 = 'Отчет НФ на 1.02.2022г.xlsx'
+sheet_name1 = '01.02.2022'
+
+excel_name2 = 'Отчет НФ на 1.05.2019г_.xlsx'
+sheet_name2 = '1.05.19'
+
+excel_data_df = pandas.read_excel(excel_name2, sheet_name=sheet_name2)
 
 v_tom_chisle = 'в том числе:'
-column1 = 'ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН НА 1 ФЕВРАЛЯ 2022 ГОДА '
+column1 = 'ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН НА 1 МАЯ 2019 ГОДА'
 column2 = 'Unnamed: 1'
 column3 = 'Unnamed: 2'
 
@@ -154,7 +160,7 @@ print(excel_json_gen0)
 
 # Save dict in json
 indicator_name = "ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН"
-json_file_name = indicator_name + ".json"
+json_file_name = column1 + ".json"
 with open(json_file_name, 'w') as json_file:
     json.dump(excel_json_gen0, json_file)
 

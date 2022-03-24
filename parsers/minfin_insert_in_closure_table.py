@@ -1,11 +1,12 @@
-from calendar import month
+# from calendar import month
 import sqlite3
 import json
 import insert_in_closure_table
 
 indicator_name = "ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН"
+indicator_name2 = 'ОТЧЕТ О ПОСТУПЛЕНИЯХ И ИСПОЛЬЗОВАНИИ НАЦИОНАЛЬНОГО ФОНДА РЕСПУБЛИКИ КАЗАХСТАН НА 1 МАЯ 2019 ГОДА'
 month_name = "1 ФЕВРАЛЯ 2022 ГОДА "
-
+month_name2 = "1 МАЯ 2019 ГОДА"
 db_file = 'taldau_indicator1.db'
 
 # Create SQL connection to the database
@@ -17,7 +18,7 @@ cur = con.cursor()
 
 # -----------------------------------------------
 # Read loaded json file
-json_file = open(indicator_name + '.json')
+json_file = open(indicator_name2 + '.json')
 
 # Return json object as a dictionary
 json_object = json.load(json_file)
@@ -29,10 +30,11 @@ v_tom_chisle = "в том числе"
 try:
     ####### Pre-work ##########
     # Insert month into 'posts' table and retrieve the post_id
-    post_id = insert_in_closure_table.create_post(indicator_name)
+    ### post_id = insert_in_closure_table.create_post(indicator_name)
     
     # Insert month into 'comments_data' table and 'comments_tree' table. Retreive comment_id.
-    comment_id = insert_in_closure_table.add_comment(str(post_id), month_name)
+    ### comment_id = insert_in_closure_table.add_comment(str(post_id), month_name2)
+    comment_id = insert_in_closure_table.add_comment(str(1), month_name2)
 
     # Retrieve idAncestor, idNearestAncestor, commentLevel of a newly added row from the 'comments_tree' table
     cur.execute("SELECT idAncestor, idNearestAncestor, commentLevel FROM comments_tree WHERE idDescendant = '" + str(comment_id) + "'")
@@ -65,7 +67,8 @@ try:
             print("---+++---+++---+++---+++---")
 
             # Insert subcomment under "1 february" comment. Insert row into 'comments_data' table and relevant rows into 'comments_tree' table.
-            subcomment_lvl1_id = insert_in_closure_table.reply_to_comment(str(post_id), content, str(recent_level0_comment_id), str(comment_sum))
+            ### subcomment_lvl1_id = insert_in_closure_table.reply_to_comment(str(post_id), content, str(recent_level0_comment_id), str(comment_sum))
+            subcomment_lvl1_id = insert_in_closure_table.reply_to_comment(str(1), content, str(recent_level0_comment_id), str(comment_sum))
             print("Subcomment level 1 id: ", subcomment_lvl1_id)
             recent_level1_comment_id = subcomment_lvl1_id
 
@@ -81,7 +84,8 @@ try:
                     comment_sum = json_object[item][elem]
 
                     # Insert subcomment under main category comment. Insert row into 'comments_data' table and relevant rows into 'comments_tree' table.
-                    subcomment_lvl2_id = insert_in_closure_table.reply_to_comment(str(post_id), content, str(recent_level1_comment_id), str(comment_sum))
+                    ### subcomment_lvl2_id = insert_in_closure_table.reply_to_comment(str(post_id), content, str(recent_level1_comment_id), str(comment_sum))
+                    subcomment_lvl2_id = insert_in_closure_table.reply_to_comment(str(1), content, str(recent_level1_comment_id), str(comment_sum))
                     
                     recent_level2_comment_id = subcomment_lvl2_id
                     
@@ -95,7 +99,8 @@ try:
                         comment_sum = json_object[item][elem][sub_elem]
 
                         # Insert subcomment under main category comment. Insert row into 'comments_data' table and relevant rows into 'comments_tree' table.
-                        subcomment_lvl3_id = insert_in_closure_table.reply_to_comment(str(post_id), content, str(recent_level2_comment_id), str(comment_sum))
+                        ### subcomment_lvl3_id = insert_in_closure_table.reply_to_comment(str(post_id), content, str(recent_level2_comment_id), str(comment_sum))
+                        subcomment_lvl3_id = insert_in_closure_table.reply_to_comment(str(1), content, str(recent_level2_comment_id), str(comment_sum))
                         print("Subcomment level 3 id: ", subcomment_lvl3_id)
                         recent_level3_comment_id = subcomment_lvl3_id
             

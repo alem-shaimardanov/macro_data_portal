@@ -134,7 +134,8 @@ def print_tree(ancestor_id):
         tableTree.idDescendant, 
         tableTree.idNearestAncestor, 
         tableTree.commentLevel, 
-        tableTree.idSubject 
+        tableTree.idSubject,
+        tableData.comment_sum
         FROM comments_data AS tableData 
         JOIN comments_tree AS tableTree 
         ON tableData.idEntry = tableTree.idDescendant 
