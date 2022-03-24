@@ -48,9 +48,6 @@ cur = con.cursor()
 # # Drop 'source_names' table
 # cur.execute('''drop table source_names''')
 
-# # Drop 'periods' table
-# cur.execute('''drop table periods''')
-
 # # Drop 'indicator_period_combo' table
 # cur.execute('''drop table indicator_period_combo''')
 
@@ -75,6 +72,9 @@ cur = con.cursor()
 
 # Drop 'posts' table
 cur.execute('''drop table posts''')
+
+# Drop 'periods' table
+cur.execute('''drop table periods''')
 
 # Drop 'comments_data' table
 cur.execute('''drop table comments_data''')

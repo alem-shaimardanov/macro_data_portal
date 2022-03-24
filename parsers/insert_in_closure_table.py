@@ -9,6 +9,27 @@ con = sqlite3.connect(db_file)
 cur = con.cursor()
 
 
+# Function to insert period_name into 'periods' table
+def add_period_name(period_name):
+    try:
+        # Insert a post
+        cur.execute("INSERT INTO periods (period_name) VALUES ('" + period_name + "')")
+        # Retrieve the post id of a newly created post
+        cur.execute("SELECT period_id from periods WHERE period_name='" + period_name + "'")
+        records = cur.fetchone()
+        print("Period_id: ", records[0])
+
+        # Save (commit) the changes
+        con.commit()
+        
+        # Return period_id
+        return records[0]
+
+    except:
+        cur.rollback()
+        return -1
+
+
 # Function to Create a post
 def create_post(post_content):
     try:
@@ -16,7 +37,7 @@ def create_post(post_content):
         cur.execute("INSERT INTO posts (content) VALUES ('" + post_content + "')")
 
         # Retrieve the post id of a newly created post
-        cur.execute("SELECT postid from posts WHERE content='" + post_content + "'")
+        cur.execute("SELECT post_id from posts WHERE content='" + post_content + "'")
         records = cur.fetchone()
         print("Post_id: ", records[0])
         print("--------------------------------")
@@ -32,19 +53,19 @@ def create_post(post_content):
         return -1
 
 # Function to Add a comment to the main post
-def add_comment(post_id, comment_content, comment_sum="nan"):
+def add_comment(post_id, comment_content, period_id, comment_sum="nan"):
     try:
         # if comment_sum is nan, insert content and post_id only into 'comments_data' table
         if comment_sum == 'nan':
             # Insert a comment into 'comments_data' table
-            cur.execute("INSERT INTO comments_data (content, post_id) VALUES ('" + comment_content + "','" + post_id + "')")
+            cur.execute("INSERT INTO comments_data (content, post_id, period_id) VALUES ('" + comment_content + "','" + post_id + "','" + period_id + "')")
         
         else:
             # Insert a comment into 'comments_data' table
-            cur.execute("INSERT INTO comments_data (content, post_id, comment_sum) VALUES ('" + comment_content + "','" + post_id + "','" + comment_sum + "')")
+            cur.execute("INSERT INTO comments_data (content, post_id, period_id, comment_sum) VALUES ('" + comment_content + "','" + post_id + "','" + period_id + "','" + comment_sum + "')")
 
         # Retrieve the comment id of a newly created comment
-        cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content + "'")
+        cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content + "' and period_id = '" + period_id + "'")
         records = cur.fetchone()
         print("Comment_id: ", records[0])
         comment_id = records[0]
@@ -83,11 +104,11 @@ def reply_to_comment(post_id, comment_content, root_comment_id, period_id, comme
         # if comment_sum is nan, insert content and post_id only into 'comments_data' table
         if comment_sum == 'nan':
             # Insert a comment into 'comments_data' table
-            cur.execute("INSERT INTO comments_data (content, post_id) VALUES ('" + comment_content + "','" + post_id + "')")
+            cur.execute("INSERT INTO comments_data (content, post_id, period_id) VALUES ('" + comment_content + "','" + post_id + "','" + period_id + "')")
         
         else:
             # Insert a comment into 'comments_data' table
-            cur.execute("INSERT INTO comments_data (content, post_id, comment_sum) VALUES ('" + comment_content + "','" + post_id + "','" + comment_sum + "')")
+            cur.execute("INSERT INTO comments_data (content, post_id, period_id, comment_sum) VALUES ('" + comment_content + "','" + post_id + "','" + period_id + "','" + comment_sum + "')")
 
 
         # Retrieve the comment id of a newly created comment
@@ -193,7 +214,7 @@ def delete_comment_branch(post_id, root_comment_id):
 def delete_post(post_id):
     try:
         # Delete post from the 'posts' table
-        cur.execute("DELETE FROM posts where postid =" + post_id)
+        cur.execute("DELETE FROM posts where post_id =" + post_id)
 
         # Delete all rows related to the target post from 'comments_tree' table
         cur.execute("DELETE FROM comments_tree where idSubject =" + post_id)

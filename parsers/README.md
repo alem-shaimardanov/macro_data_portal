@@ -438,4 +438,18 @@ Current to-dos:
 2. Write MinFin 2nd JSON in closure tables.
 
 
-Excel Table 3 outline:
+Select a certain indicator for all time periods
+```SQL
+SELECT tableData.idEntry, 
+        tableData.content, 
+        tableTree.idAncestor, 
+        tableTree.idDescendant, 
+        tableTree.idNearestAncestor, 
+        tableTree.commentLevel, 
+        tableTree.idSubject,
+        tableData.comment_sum
+        FROM comments_data AS tableData 
+        JOIN comments_tree AS tableTree 
+        ON tableData.idEntry = tableTree.idDescendant 
+        WHERE tableData.content = ' - целевые трансферты';
+```

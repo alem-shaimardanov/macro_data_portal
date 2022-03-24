@@ -5,13 +5,13 @@ from time import *
 from random import randint
 
 base_url_1 = "https://api.stlouisfed.org/fred/series/observations?series_id=GNPCA&api_key=7d1fa8e45a6f8b1fa966454d53fb91dd&file_type=json"
-
-urls_list = [base_url_1]
+base_url_2 = "https://api.stlouisfed.org/fred/series/observations?series_id=CPIFABSL&api_key=7d1fa8e45a6f8b1fa966454d53fb91dd&file_type=json"
+urls_list = [base_url_1, base_url_2]
 
 indicator_name_1 = "GNPCA"
+indicator_name_2 = "CPIFABSL"
 
-
-indicator_names_list = [indicator_name_1]
+indicator_names_list = [indicator_name_1, indicator_name_2]
 
 ############## CODE TO LOAD JSON FROM FRED #################
 for i in range(len(urls_list)):

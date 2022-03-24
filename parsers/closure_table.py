@@ -12,7 +12,7 @@ cur = con.cursor()
 # Create 'posts' table
 cur.execute('''
     create table posts (
-    postid integer primary key autoincrement,
+    post_id integer primary key autoincrement,
     content text,
     dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )''')
