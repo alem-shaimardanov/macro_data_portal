@@ -11,15 +11,6 @@ con = sqlite3.connect(db_file)
 cur = con.cursor()
 
 
-'''
-Goal: Take indicators for 1 february and print them in denormalized (like original) format
-1. Read from SQL table
-2. If parent print
-3. If child gen 1, print with 2 spaces
-4. If child gen 2, print with 4 spaces
-5. If child gen 3, print with 6 spaces
-'''
-
 # Save name of period
 month_names_list = ["1 МАЯ 2019 ГОДА", "1 ФЕВРАЛЯ 2022 ГОДА", "1 АВГУСТА 2021 ГОДА"]
 
