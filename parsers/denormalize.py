@@ -30,8 +30,6 @@ cur.execute('''
         WHERE tableTree.idAncestor = tableTree.idDescendant and tableData.period_id = 3''')
 records = cur.fetchall()
 
-# print("Type of records: ", type(records))
-# # print("Values: ",records)
 
 # Create a CSV file where data will be stored
 csv_file_name = month_names_list[2] + '.csv'

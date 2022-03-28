@@ -49,6 +49,9 @@ try:
     
     else:
         cur.execute("SELECT post_id FROM posts WHERE content='" + indicator_name.strip() + "'")
+        
+        # post_id = Post.objects.get(content=indicator_name.strip()).values('id')
+        
         records = cur.fetchall()
         post_id = records[0][0]
         print("Post already exists. Post_id: ",post_id)
