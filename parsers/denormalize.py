@@ -1,5 +1,6 @@
 import json
 import sqlite3
+import csv
 
 # Save the name of the database
 db_file = 'taldau_indicator1.db'
@@ -32,7 +33,28 @@ records = cur.fetchall()
 # print("Type of records: ", type(records))
 # # print("Values: ",records)
 
-for record in records:
-    line_indent = 4*record[5]
-    print(line_indent*" ", record[1], " - ", record[7])
-    # print("comLevel: ", record[5], " ; comSum: ", record[7])
+# Create a CSV file where data will be stored
+csv_file_name = month_names_list[2] + '.csv'
+
+# Create variable to store head row of CSV
+fields = ["Индикатор", "Сумма"]
+
+# writing to csv file 
+with open(csv_file_name, 'w') as csvfile:
+        # creating a csv writer object 
+        csvwriter = csv.writer(csvfile) 
+
+        # writing the fields 
+        csvwriter.writerow(fields)
+        
+#     # writing the data rows 
+#     csvwriter.writerows(rows)
+
+        for record in records:
+                current_row_list = [record[1], record[7]]
+                csvwriter.writerow(current_row_list) 
+
+# for record in records:
+#         line_indent = 4*record[5]
+#         print(line_indent*" ", record[1], " - ", record[7])
+#         # print("comLevel: ", record[5], " ; comSum: ", record[7])
