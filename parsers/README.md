@@ -453,3 +453,8 @@ SELECT tableData.idEntry,
         ON tableData.idEntry = tableTree.idDescendant 
         WHERE tableData.content = ' - целевые трансферты';
 ```
+
+
+To-dos:
+1. Load JSONs of sources into Django db;
+2. Create a form which will choose indicator_name and allows to press "Export", and it will export all data about the indicator in CSV format;
