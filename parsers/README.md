@@ -458,3 +458,19 @@ SELECT tableData.idEntry,
 To-dos:
 1. Load JSONs of sources into Django db;
 2. Create a form which will choose indicator_name and allows to press "Export", and it will export all data about the indicator in CSV format;
+
+My problem:
+- can't load jsons into Django database
+
+Workflow:
+1. you run fred_insert_into_closure.py
+2. it will call inset_into_closure.py
+3. it will create necessary objects to store
+
+
+Logic for form:
+1. User types in the indicator name.
+2. The indicator name is sent to back end, where select query is performed.
+3. Save the result of select query in CSV.
+4. Send CSV to front end.
+5. The user clicks download and they download the CSV file.
