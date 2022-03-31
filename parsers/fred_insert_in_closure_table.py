@@ -38,7 +38,7 @@ try:
         print("Date: ", local_date, " ; Type of date: ", type(local_date), " . Value: ", local_value, " ; Type of value: ", type(local_value))
 
         # Insert month into 'comments_data' table and 'comments_tree' table. Retreive comment_id.
-        comment_id = insert_in_closure_table.add_comment(str(post_id), local_date, local_value)
+        comment_id = insert_in_closure_table.add_comment(post_id=str(post_id), content=local_date, comment_sum=local_value)
 
     
 

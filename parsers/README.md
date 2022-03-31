@@ -462,10 +462,10 @@ To-dos:
 My problem:
 - can't load jsons into Django database
 
-Workflow:
+Pre-work: loading json in closure tables in django db:
 1. you run fred_insert_into_closure.py
-2. it will call inset_into_closure.py
-3. it will create necessary objects to store
+2. it will call insert_into_closure.py
+3. it will create necessary objects to store in django database.
 
 
 Logic for form:
