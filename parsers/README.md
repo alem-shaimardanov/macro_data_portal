@@ -474,3 +474,20 @@ Logic for form:
 3. Save the result of select query in CSV.
 4. Send CSV to front end.
 5. The user clicks download and they download the CSV file.
+
+
+SQL query for printing tree from Django database:
+```SQL
+SELECT tableData.id, 
+        tableData.content, 
+        tableTree.ancestor, 
+        tableTree.descendant, 
+        tableTree.nearest_ancestor, 
+        tableTree.level, 
+        tableTree.post_id,
+        tableData.summa
+        FROM polls_comment AS tableData 
+        JOIN polls_postcomment AS tableTree 
+        ON tableData.id = tableTree.descendant 
+        WHERE tableTree.ancestor = 
+```
