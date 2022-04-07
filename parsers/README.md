@@ -430,7 +430,7 @@ To-dos:
 3. Convert 5 Taldau JSONs into closure table.
 4. MUST DO - Load 5 MinFin datasets into JSONs.
 5. Convert 5 MinFin JSONs into closure table.
-6. Build a sample web app with Django to simulate requests from database.
+6. DONE - Build a sample web app with Django to simulate requests from database.
 
 
 Current to-dos:
@@ -456,11 +456,9 @@ SELECT tableData.idEntry,
 
 
 To-dos:
-1. Load JSONs of sources into Django db;
-2. Create a form which will choose indicator_name and allows to press "Export", and it will export all data about the indicator in CSV format;
+1. DONE - Load JSONs of sources into Django db;
+2. DONE - Create a form which will choose indicator_name and allows to press "Export", and it will export all data about the indicator in CSV format;
 
-My problem:
-- can't load jsons into Django database
 
 Pre-work: loading json in closure tables in django db:
 1. you run fred_insert_into_closure.py

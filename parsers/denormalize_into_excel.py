@@ -41,7 +41,7 @@ def fill_out_entry(level, name, value):
     entry = ["", "", "", ""]
     entry[level] = name
     visited_cells[level] = True
-    # Cell in 3rd row contains the value
+    # Cell in the 3rd column contains the value (columns start from 0)
     entry[3] = value
 
     for i, cell in enumerate(visited_cells):
