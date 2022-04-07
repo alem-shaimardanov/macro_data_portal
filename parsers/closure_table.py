@@ -9,11 +9,21 @@ con = sqlite3.connect(db_file)
 cur = con.cursor()
 
 
+# Create 'sources' table
+cur.execute('''
+    create table sources (
+        source_id integer primary key autoincrement,
+        name text
+    )
+''')
+
+
 # Create 'posts' table
 cur.execute('''
     create table posts (
     post_id integer primary key autoincrement,
     content text,
+    source_id int,
     dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )''')
 
@@ -31,9 +41,12 @@ cur.execute('''
     create table comments_data (
     idEntry integer primary key autoincrement,
     content text,
+    country_name_id int,
     post_id int,
     period_id int,
     comment_sum int,
+    reference,
+    reference_date,
     dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )''')
 
