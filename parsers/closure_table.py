@@ -45,8 +45,8 @@ cur.execute('''
     post_id int,
     period_id int,
     comment_sum int,
-    reference,
-    reference_date,
+    reference text,
+    reference_date text,
     dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )''')
 

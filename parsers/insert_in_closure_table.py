@@ -26,16 +26,19 @@ def add_period_name(period_name):
         return records[0]
 
     except:
-        cur.rollback()
+        con.rollback()
         return -1
 
 
 # Function to Create a post
-def create_post(post_content):
+def create_post(post_content, source_id):
     try:
+        print("Entered Try block ...")
         # Insert a post
-        cur.execute("INSERT INTO posts (content) VALUES ('" + post_content + "')")
-
+        cur.execute("INSERT INTO posts (content, source_id) VALUES ('" + post_content + "'," + str(source_id) + ")")
+        # cur.execute("insert into posts (content, source_id) values ('Post 1',1)")
+        
+        print('Inserted post')
         # Retrieve the post id of a newly created post
         cur.execute("SELECT post_id from posts WHERE content='" + post_content + "'")
         records = cur.fetchone()
@@ -49,37 +52,47 @@ def create_post(post_content):
         return records[0]
 
     except:
-        cur.rollback()
+        con.rollback()
         return -1
 
 # Function to Add a comment to the main post
 def add_comment(post_id, comment_content, period_id='nan', comment_sum="nan"):
     try:
+        print("Inside Add Comment ...")
+        comment_id = 0
         if period_id == 'nan':
             # if comment_sum is nan, insert content and post_id only into 'comments_data' table
             if comment_sum == 'nan':
                 # Insert a comment into 'comments_data' table
-                cur.execute("INSERT INTO comments_data (content, post_id) VALUES ('" + comment_content + "','" + post_id + "','" + period_id + "')")
+                cur.execute("INSERT INTO comments_data (content, post_id) VALUES ('" + comment_content + "'," + post_id + ")")
             
             else:
                 # Insert a comment into 'comments_data' table
-                cur.execute("INSERT INTO comments_data (content, post_id, comment_sum) VALUES ('" + comment_content + "','" + post_id + "','" + period_id + "','" + comment_sum + "')")
+                cur.execute("INSERT INTO comments_data (content, post_id, comment_sum) VALUES ('" + comment_content + "'," + post_id + "," + comment_sum + ")")
 
         else:
             # if comment_sum is nan, insert content and post_id only into 'comments_data' table
             if comment_sum == 'nan':
                 # Insert a comment into 'comments_data' table
-                cur.execute("INSERT INTO comments_data (content, post_id, period_id) VALUES ('" + comment_content + "','" + post_id + "','" + period_id + "')")
+                cur.execute("INSERT INTO comments_data (content, post_id, period_id) VALUES ('" + comment_content + "'," + post_id + "," + period_id + ")")
             
             else:
                 # Insert a comment into 'comments_data' table
-                cur.execute("INSERT INTO comments_data (content, post_id, period_id, comment_sum) VALUES ('" + comment_content + "','" + post_id + "','" + period_id + "','" + comment_sum + "')")
+                cur.execute("INSERT INTO comments_data (content, post_id, period_id, comment_sum) VALUES ('" + comment_content + "'," + post_id + "," + period_id + "," + comment_sum + ")")
 
-        # Retrieve the comment id of a newly created comment
-        cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content + "' and period_id = '" + period_id + "'")
-        records = cur.fetchone()
-        print("Comment_id: ", records[0])
-        comment_id = records[0]
+        print("Inserted comment into comments_data ... ")
+        if period_id == 'nan':
+            cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content +"'")
+            records = cur.fetchone()
+            comment_id = records[0]
+            print("if COMMENT id: ", comment_id)
+        else:
+            # Retrieve the comment id of a newly created comment
+            cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content + "' and period_id = '" + period_id + "'")
+            records = cur.fetchone()
+            print("Comment_id: ", records[0])
+            comment_id = records[0]
+            print("else COMMENT id: ", comment_id)
 
         # Insert post_id, comment_id into 'comments_tree' table
         cur.execute("INSERT INTO comments_tree (idAncestor, idDescendant, idNearestAncestor, commentLevel, idSubject) VALUES (" +

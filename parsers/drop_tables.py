@@ -70,6 +70,9 @@ cur = con.cursor()
 # # Drop 'taldau_values' table
 # cur.execute('''drop table taldau_values''')
 
+# Drop 'sources' table
+cur.execute('''drop table sources''')
+
 # Drop 'posts' table
 cur.execute('''drop table posts''')
 
