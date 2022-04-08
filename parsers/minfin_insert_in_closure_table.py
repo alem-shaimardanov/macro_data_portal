@@ -31,6 +31,28 @@ v_tom_chisle = "в том числе"
 
 try:
     ####### Pre-work ##########
+     # Check whether source_name has been inserted into 'sources' table
+    cur.execute("SELECT COUNT(1) FROM sources WHERE name='" + source_name + "'")
+    records = cur.fetchall()
+    print('SELECT query finished')
+
+    source_id = 0
+    if records[0][0] == 0:
+        
+        cur.execute("INSERT INTO sources (name) values ('" + source_name + "')")
+        # Retrieve the source id of a newly created source
+        cur.execute("SELECT source_id from sources WHERE name='" + source_name + "'")
+        records = cur.fetchone()
+
+        source_id = records[0]
+        print("Source id: ", source_id)
+    else:
+        cur.execute("SELECT source_id from sources WHERE name='" + source_name + "'")
+        records = cur.fetchone()
+        source_id = records[0]
+        print("source id: ", source_id)
+    con.commit()
+
     # Insert period into 'periods' table
     period_id = insert_in_closure_table.add_period_name(month_names_list[0])
 
@@ -45,7 +67,7 @@ try:
     # If term_item_name is not in the table
     if records[0][0] == 0:
         # Insert month into 'posts' table and retrieve the post_id
-        post_id = insert_in_closure_table.create_post(indicator_name.strip())
+        post_id = insert_in_closure_table.create_post(indicator_name.strip(), source_id)
         print("New Post's been inserted ...")
     
     else:
