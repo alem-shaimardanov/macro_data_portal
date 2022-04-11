@@ -56,36 +56,105 @@ def create_post(post_content, source_id):
         return -1
 
 # Function to Add a comment to the main post
-def add_comment(post_id, comment_content, period_id='nan', comment_sum="nan"):
+def add_comment(post_id, comment_content, country_name_id = 'nan', period_id='nan', comment_sum="nan", units='nan', reference = 'nan'):
     try:
         print("Inside Add Comment ...")
         comment_id = 0
-        if period_id == 'nan':
-            # if comment_sum is nan, insert content and post_id only into 'comments_data' table
-            if comment_sum == 'nan':
-                # Insert a comment into 'comments_data' table
-                cur.execute("INSERT INTO comments_data (content, post_id) VALUES ('" + comment_content + "'," + post_id + ")")
-            
+        if country_name_id == 'nan':
+            if period_id == 'nan':
+                # if comment_sum is nan, insert content and post_id only into 'comments_data' table
+                if comment_sum == 'nan':
+                    if units == 'nan':
+                        # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, post_id) VALUES ('" + comment_content + "'," + post_id + ")")
+                    else:
+                        # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, post_id, units) VALUES ('" + comment_content + "'," + post_id + ",'" + units + "')")
+                else:
+                    if units == 'nan':
+                        if reference == 'nan':
+                            # Insert a comment into 'comments_data' table
+                            cur.execute("INSERT INTO comments_data (content, post_id, comment_sum) VALUES ('" + comment_content + "'," + post_id + "," + comment_sum + ")")
+                        else:
+                            # Insert a comment into 'comments_data' table
+                            cur.execute("INSERT INTO comments_data (content, post_id, comment_sum, reference) VALUES ('" + comment_content + "'," + post_id + "," + comment_sum + ",'" + reference + "')")
+                    
+                    else:
+                        # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, post_id, comment_sum, units) VALUES ('" + comment_content + "'," + post_id + "," + comment_sum + ",'" + units + "')")
+                       
             else:
-                # Insert a comment into 'comments_data' table
-                cur.execute("INSERT INTO comments_data (content, post_id, comment_sum) VALUES ('" + comment_content + "'," + post_id + "," + comment_sum + ")")
-
+                # if comment_sum is nan, insert content and post_id only into 'comments_data' table
+                if comment_sum == 'nan':
+                    if units == 'nan':
+                        # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, post_id, period_id) VALUES ('" + comment_content + "'," + post_id + "," + period_id + ")")
+                    else:
+                        # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, post_id, period_id, units) VALUES ('" + comment_content + "'," + post_id + "," + period_id + ",'" + units + "')")
+                else:
+                    if units == 'nan':
+                        # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, post_id, period_id, comment_sum) VALUES ('" + comment_content + "'," + post_id + "," + period_id + "," + comment_sum + ")")
+                    else:
+                        # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, post_id, period_id, comment_sum, units) VALUES ('" + comment_content + "'," + post_id + "," + period_id + "," + comment_sum + ",'" + units + "')")
+                    
         else:
-            # if comment_sum is nan, insert content and post_id only into 'comments_data' table
-            if comment_sum == 'nan':
-                # Insert a comment into 'comments_data' table
-                cur.execute("INSERT INTO comments_data (content, post_id, period_id) VALUES ('" + comment_content + "'," + post_id + "," + period_id + ")")
-            
+            if period_id == 'nan':
+                # if comment_sum is nan, insert content and post_id only into 'comments_data' table
+                if comment_sum == 'nan':
+                    if units == 'nan':
+                        # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, country_name_id, post_id) VALUES ('" + comment_content + "'," + country_name_id + "'," + post_id + ")")
+                    else:
+                        # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, country_name_id, post_id, units) VALUES ('" + comment_content + "'," + country_name_id + "'," + post_id + ",'" + units + "')")
+                    
+                else:
+                    if units == 'nan':
+                        if reference == 'nan':
+                            # Insert a comment into 'comments_data' table
+                            cur.execute("INSERT INTO comments_data (content, country_name_id, post_id, comment_sum) VALUES ('" + comment_content + "'," + country_name_id + "," + post_id + "," + comment_sum + ")")
+                        else:
+                            # Insert a comment into 'comments_data' table
+                            cur.execute("INSERT INTO comments_data (content, country_name_id, post_id, comment_sum, reference) VALUES ('" + comment_content + "'," + country_name_id + "," + post_id + "," + comment_sum + ",'" + reference + "')")
+                        
+                    else:
+                       # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, country_name_id, post_id, comment_sum, units) VALUES ('" + comment_content + "'," + country_name_id + "," + post_id + "," + comment_sum + ",'" + units + "')")
+                     
             else:
-                # Insert a comment into 'comments_data' table
-                cur.execute("INSERT INTO comments_data (content, post_id, period_id, comment_sum) VALUES ('" + comment_content + "'," + post_id + "," + period_id + "," + comment_sum + ")")
+                # if comment_sum is nan, insert content and post_id only into 'comments_data' table
+                if comment_sum == 'nan':
+                    if units == 'nan':
+                        # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, country_name_id, post_id, period_id) VALUES ('" + comment_content + "'," + country_name_id + "," + post_id + "," + period_id + ")")
+                    else:
+                        # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, country_name_id, post_id, period_id, units) VALUES ('" + comment_content + "'," + country_name_id + "," + post_id + "," + period_id + ",'" + units + "')")
+                     
+                else:
+                    if units == 'nan':
+                        # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, country_name_id, post_id, period_id, comment_sum) VALUES ('" + comment_content + "'," + country_name_id + "," + post_id + "," + period_id + "," + comment_sum + ")")
+                    else:
+                        # Insert a comment into 'comments_data' table
+                        cur.execute("INSERT INTO comments_data (content, country_name_id, post_id, period_id, comment_sum, units) VALUES ('" + comment_content + "'," + country_name_id + "," + post_id + "," + period_id + "," + comment_sum + ",'" + units + "')")
+                    
 
         print("Inserted comment into comments_data ... ")
+
         if period_id == 'nan':
-            cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content +"'")
-            records = cur.fetchone()
-            comment_id = records[0]
-            print("if COMMENT id: ", comment_id)
+            if comment_sum == 'nan':
+                cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content +"'")
+                records = cur.fetchone()
+                comment_id = records[0]
+            else:
+                cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content + "' and comment_sum=" + str(comment_sum))
+                records = cur.fetchone()
+                comment_id = records[0]
+
         else:
             # Retrieve the comment id of a newly created comment
             cur.execute("SELECT idEntry from comments_data WHERE content='" + comment_content + "' and period_id = '" + period_id + "'")

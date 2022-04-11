@@ -115,7 +115,7 @@ try:
 
             # Insert subcomment under "1 february" comment. Insert row into 'comments_data' table and relevant rows into 'comments_tree' table.
             ### subcomment_lvl1_id = insert_in_closure_table.reply_to_comment(str(1), content, str(recent_level0_comment_id), str(comment_sum))
-            subcomment_lvl1_id = insert_in_closure_table.add_comment(str(post_id), content.strip(), str(period_id), str(comment_sum))
+            subcomment_lvl1_id = insert_in_closure_table.add_comment(post_id = str(post_id), comment_content = content.strip(), period_id = str(period_id), comment_sum = str(comment_sum))
             print("Subcomment level 1 id: ", subcomment_lvl1_id)
             recent_level1_comment_id = subcomment_lvl1_id
 
@@ -132,7 +132,7 @@ try:
 
                     # Insert subcomment under main category comment. Insert row into 'comments_data' table and relevant rows into 'comments_tree' table.
                     ### subcomment_lvl2_id = insert_in_closure_table.reply_to_comment(str(1), content, str(recent_level1_comment_id), str(comment_sum))
-                    subcomment_lvl2_id = insert_in_closure_table.reply_to_comment(str(post_id), content.strip(), str(recent_level1_comment_id), str(period_id), str(comment_sum))
+                    subcomment_lvl2_id = insert_in_closure_table.reply_to_comment(post_id=str(post_id), comment_content=content.strip(), root_comment_id=str(recent_level1_comment_id), period_id=str(period_id), comment_sum=str(comment_sum))
                     
                     recent_level2_comment_id = subcomment_lvl2_id
                     
@@ -147,7 +147,7 @@ try:
 
                         # Insert subcomment under main category comment. Insert row into 'comments_data' table and relevant rows into 'comments_tree' table.
                         ### subcomment_lvl3_id = insert_in_closure_table.reply_to_comment(str(post_id), content, str(recent_level2_comment_id), str(comment_sum))
-                        subcomment_lvl3_id = insert_in_closure_table.reply_to_comment(str(post_id), content.strip(), str(recent_level2_comment_id), str(period_id), str(comment_sum))
+                        subcomment_lvl3_id = insert_in_closure_table.reply_to_comment(post_id=str(post_id), comment_content=content.strip(), root_comment_id=str(recent_level2_comment_id), period_id=str(period_id), comment_sum=str(comment_sum))
                         print("Subcomment level 3 id: ", subcomment_lvl3_id)
                         recent_level3_comment_id = subcomment_lvl3_id
             

@@ -18,6 +18,15 @@ cur.execute('''
 ''')
 
 
+# Create 'countries' table
+cur.execute('''
+    create table countries (
+        country_name_id integer primary key autoincrement,
+        name text
+    )
+''')
+
+
 # Create 'posts' table
 cur.execute('''
     create table posts (
@@ -45,6 +54,7 @@ cur.execute('''
     post_id int,
     period_id int,
     comment_sum int,
+    units text,
     reference text,
     reference_date text,
     dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP

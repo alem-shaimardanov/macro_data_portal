@@ -73,6 +73,9 @@ cur = con.cursor()
 # Drop 'sources' table
 cur.execute('''drop table sources''')
 
+# Drop 'countries' table
+cur.execute(''' drop table countries''')
+
 # Drop 'posts' table
 cur.execute('''drop table posts''')
 
