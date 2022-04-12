@@ -4,14 +4,26 @@ from urllib.request import urlopen
 from time import *
 from random import randint
 
+from django.template import base
+
 base_url_1 = "https://api.stlouisfed.org/fred/series/observations?series_id=GNPCA&api_key=7d1fa8e45a6f8b1fa966454d53fb91dd&file_type=json"
 base_url_2 = "https://api.stlouisfed.org/fred/series/observations?series_id=CPIFABSL&api_key=7d1fa8e45a6f8b1fa966454d53fb91dd&file_type=json"
-urls_list = [base_url_1, base_url_2]
+base_url_3 = "https://api.stlouisfed.org/fred/series/observations?series_id=PCAGDPKZA646NWDB&api_key=7d1fa8e45a6f8b1fa966454d53fb91dd&file_type=json"
+base_url_4 = "https://api.stlouisfed.org/fred/series/observations?series_id=MKTGDPKZA646NWDB&api_key=7d1fa8e45a6f8b1fa966454d53fb91dd&file_type=json"
+base_url_5 = "https://api.stlouisfed.org/fred/series/observations?series_id=KAZNGDPDUSD&api_key=7d1fa8e45a6f8b1fa966454d53fb91dd&file_type=json"
+base_url_6 = "https://api.stlouisfed.org/fred/series/observations?series_id=KAZNGDPRPCHPT&api_key=7d1fa8e45a6f8b1fa966454d53fb91dd&file_type=json"
+urls_list = [base_url_1, base_url_2, base_url_3, base_url_4, base_url_5, base_url_6]
 
 indicator_name_1 = "GNPCA"
 indicator_name_2 = "CPIFABSL"
+indicator_name_3 = "GDP per capita|Kazakhstan"
+indicator_name_4 = "GDP|Kazakhstan"
+indicator_name_5 = "GDP in current prices|Kazakhstan"
+indicator_name_6 = "GDP in constant prices|Kazakhstan"
 
-indicator_names_list = [indicator_name_1, indicator_name_2]
+
+
+indicator_names_list = [indicator_name_1, indicator_name_2, indicator_name_3, indicator_name_4, indicator_name_5, indicator_name_6]
 
 ############## CODE TO LOAD JSON FROM FRED #################
 for i in range(len(urls_list)):

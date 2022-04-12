@@ -1,0 +1,202 @@
+{
+    "realtime_start": "2022-04-12",
+    "realtime_end": "2022-04-12",
+    "observation_start": "1600-01-01",
+    "observation_end": "9999-12-31",
+    "units": "lin",
+    "output_type": 1,
+    "file_type": "json",
+    "order_by": "observation_date",
+    "sort_order": "asc",
+    "count": 31,
+    "offset": 0,
+    "limit": 100000,
+    "observations": [
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "1990-01-01",
+            "value": "26932729102.7371"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "1991-01-01",
+            "value": "24923076923.0769"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "1992-01-01",
+            "value": "24917355371.9008"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "1993-01-01",
+            "value": "23409260879.9427"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "1994-01-01",
+            "value": "21250792886.1054"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "1995-01-01",
+            "value": "20374302652.3819"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "1996-01-01",
+            "value": "21035368250.8881"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "1997-01-01",
+            "value": "22165932062.966"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "1998-01-01",
+            "value": "22135254836.0031"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "1999-01-01",
+            "value": "16870821839.7584"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2000-01-01",
+            "value": "18291994909.0044"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2001-01-01",
+            "value": "22152694161.8882"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2002-01-01",
+            "value": "24636593223.3467"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2003-01-01",
+            "value": "30833699702.7594"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2004-01-01",
+            "value": "43151647002.6096"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2005-01-01",
+            "value": "57123671733.8952"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2006-01-01",
+            "value": "81003884545.4099"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2007-01-01",
+            "value": "104849886825.584"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2008-01-01",
+            "value": "133441612246.798"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2009-01-01",
+            "value": "115308661142.927"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2010-01-01",
+            "value": "148047348240.643"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2011-01-01",
+            "value": "192626507971.584"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2012-01-01",
+            "value": "207998568865.789"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2013-01-01",
+            "value": "236634552078.102"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2014-01-01",
+            "value": "221415572819.5"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2015-01-01",
+            "value": "184388432148.715"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2016-01-01",
+            "value": "137278320084.171"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2017-01-01",
+            "value": "166805800595.704"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2018-01-01",
+            "value": "179339994859.384"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2019-01-01",
+            "value": "181667190075.541"
+        },
+        {
+            "realtime_start": "2022-04-12",
+            "realtime_end": "2022-04-12",
+            "date": "2020-01-01",
+            "value": "171082379532.988"
+        }
+    ]
+}
