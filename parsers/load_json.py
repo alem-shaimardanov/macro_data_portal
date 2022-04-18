@@ -5,19 +5,27 @@ from time import *
 from random import randint
 
 base_url_1 = "https://taldau.stat.gov.kz/ru/Api/GetIndexData/704449?period=7&dics=67" # 1 category
-base_url_2 = "https://taldau.stat.gov.kz/ru/Api/GetIndexData/703088?period=5&dics=67,3030" # 2 categories
-base_url_3 = "https://taldau.stat.gov.kz/ru/Api/GetIndexData/703089?period=5&dics=68,481,1336" # 3 categories
+
+base_url_2 = "https://taldau.stat.gov.kz/ru/Api/GetIndexData/704453?period=7&dics=67,749,735" # 3 categories
+base_url_3 = "https://taldau.stat.gov.kz/ru/Api/GetIndexData/704454?period=7&dics=67,749,735" # 3 categories 
 base_url_4 = "https://taldau.stat.gov.kz/ru/Api/GetIndexData/703090?period=5&dics=68,524,2819" # 3 categories
 base_url_5 = "https://taldau.stat.gov.kz/ru/Api/GetIndexData/703094?period=4&dics=68,2513,2853" # 3 categories
+
+base_url_6 = "https://taldau.stat.gov.kz/ru/Api/GetIndexData/703088?period=5&dics=67,3030" # 2 categories
+base_url_7 = "https://taldau.stat.gov.kz/ru/Api/GetIndexData/703089?period=5&dics=68,481,1336" # 3 categories
+
 
 
 urls_list = [base_url_1, base_url_2, base_url_3]
 
 indicator_name_1 = "индекс реальных денежных доходов"
-indicator_name_2 = "Цены производителей на продукцию сельского хозяйства"
-indicator_name_3 = "Цены на продукцию лесного хозяйства"
+indicator_name_2 = "Денежные доходы, в среднем на душу населения"
+indicator_name_3 = "Денежные доходы домашних хозяйств, в среднем на домашнее хозяйство"
+
 indicator_name_4 = "Цены на продукцию рыболовства и рыбоводства"
 indicator_name_5 = "Цены предприятий-производителей на промышленную продукцию"
+indicator_name_6 = "Цены производителей на продукцию сельского хозяйства"
+indicator_name_7 = "Цены на продукцию лесного хозяйства"
 
 indicator_names_list = [indicator_name_1, indicator_name_2,indicator_name_3]
 
